@@ -11,9 +11,20 @@
     <title>Menu page</title>
     <h1>MENU</h1>
     <table>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
     {% for item in results %}
-        <h1>{{item[1]}} {{item[2]}}</h1>
+    <tr>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[3] }}</td>
+    </tr>
+        
     {% endfor %}
+    <table>
 </body>   
 
 </html>
