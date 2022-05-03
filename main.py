@@ -28,8 +28,8 @@ def menu():
    sql = "SELECT * FROM item"
    cursor.execute(sql)
    results = cursor.fetchall()
-   return "Welcome to menu"
-   #return str(results)
+   return render_template("menu.html", results=results)
+   
 
 
 
