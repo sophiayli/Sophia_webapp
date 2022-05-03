@@ -28,7 +28,7 @@ def menu():
    sql = "SELECT * FROM item"
    cursor.execute(sql)
    results = cursor.fetchall()
-   return render_template("menu.html", results=results)
+   return render_template("menu.html", results=results) 
    
 
 
