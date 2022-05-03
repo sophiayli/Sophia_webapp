@@ -25,7 +25,7 @@ def home():
    sql = "SELECT * FROM item"
    cursor.execute(sql)
    results = cursor.fetchall()
-   return results
+   return str(results)
 
 
 
