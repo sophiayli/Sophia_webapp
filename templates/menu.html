@@ -22,8 +22,8 @@
     <div id="navbar">
         <a href="http://127.0.0.1:5000/home">Home</a>
         <a href="http://127.0.0.1:5000/menu">Menu</a>
-        <a href="#your order"></a>
-        <a href="#faq">FAQ</a>
+        <a href="http://127.0.0.1:5000/orders">Your order</a>
+        <a href="http://127.0.0.1:5000/faq">FAQ</a>
       </div>
  <body>
     <title>Menu page</title>
@@ -33,16 +33,19 @@
             <th>Item</th>
             <th>Description</th>
             <th>Price</th>
+            <button>Add</button>
         </tr>
     {% for item in results %}
     <tr>
         <td>{{ item[1] }}</td>
         <td>{{ item[2] }}</td>
         <td>{{ item[3] }}</td>
+        
     </tr>
         
     {% endfor %}
     <table>
+    
 </body>   
 
 </html>

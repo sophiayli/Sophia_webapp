@@ -22,14 +22,25 @@ def home():
     return render_template("index.html")
 
 @app.route("/menu")
-
 def menu():
    cursor = get_db().cursor()
    sql = "SELECT * FROM item"
    cursor.execute(sql)
    results = cursor.fetchall()
    return render_template("menu.html", results=results) 
+
+@app.route("/orders")
+def orders():
+    return render_template("order.html",)
    
+@app.route("/add")
+def add():
+    cursor = get_db().cursor()
+    sql = "INSERT INTO order(name, descriptioh, price) VALUES (?,?,?)"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    return render_template("menu.html", results=results) 
+
 
 
 
