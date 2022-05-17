@@ -27,6 +27,19 @@
       <a href="http://127.0.0.1:5000/orders">Your order</a>
       <a href="http://127.0.0.1:5000/faq">FAQ</a>
     </div>
+    <table>
+      <tr>
+        <td><h1>Name</h1></td>
+        <td><h1>Description</h1></td>
+        <td><h1>Price</h1></td>
+        {% for item in results %}
+        <tr>
+          <td>{{ item[3] }}</td>
+          <td>{{ item[4] }}</td>
+          <td>{{ item[5] }}</td>
+          <td>
+        </tr>
+    </table>
 </body>
       <script>
         // When the user scrolls the page, execute myFunction

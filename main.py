@@ -1,4 +1,4 @@
-from flask import Flask,g, render_template 
+from flask import Flask,g, redirect, render_template 
 import sqlite3
 
 app = Flask(__name__)
@@ -29,18 +29,32 @@ def menu():
    results = cursor.fetchall()
    return render_template("menu.html", results=results) 
 
+def add():
+    if request.method == "POST":
+        cursor = get_db().cursor()
+        id = int(request.form["item_id"])
+        sql = "INSERT INTO order_item(item_name,item_description,item_price) VALUES (?,?,?)"
+        cursor.execute(sql,(id,))
+        results = cursor.fetchall()
+    return redirect('/menu')
+    
+
 @app.route("/orders")
 def orders():
+    cursor = get_db().cursor()
+    sql = "SELECT * FROM order_item"
+    cursor.execute(sql)
     return render_template("order.html",)
    
-@app.route("/add")
+''''
+@app.route("/add", methods=["GET", "POST"])
 def add():
     cursor = get_db().cursor()
-    sql = "INSERT INTO order(name, descriptioh, price) VALUES (?,?,?)"
-    cursor.execute(sql)
-    results = cursor.fetchall()
-    return render_template("menu.html", results=results) 
+    sql = "INSERT INTO order_items(name, descriptioh, price) VALUES (?,?,?)"
+    cursor.execute(sql,)
 
+    return render_template("menu.html", results=results) 
+'''
 
 
 
