@@ -27,20 +27,32 @@
       <a href="http://127.0.0.1:5000/orders">Your order</a>
       <a href="http://127.0.0.1:5000/faq">FAQ</a>
     </div>
-    <table>
+<body>
+  <title>Order page</title>
+  <h1>YOUR ITEMS</h1>
+  <table class="center">
       <tr>
-        <td><h1>Name</h1></td>
-        <td><h1>Description</h1></td>
-        <td><h1>Price</h1></td>
-        {% for item in results %}
-        <tr>
-          <td>{{ item[3] }}</td>
-          <td>{{ item[4] }}</td>
-          <td>{{ item[5] }}</td>
-          <td>
-        </tr>
-    </table>
-</body>
+          <th>Item</th>
+          <th>Description</th>
+          <th>Price</th>
+
+      </tr>
+  {% for order_item in results %}
+  <tr>
+      <td>{{ order_item[1] }}</td>
+      <td>{{ order_item[2] }}</td>
+      <td>{{ order_item[3] }}</td>
+      <td>
+        <form action="/delete" method="post">
+        <input type="hidden" name="item_name" value="{{order_item[0]}}">
+        <input type="submit" value="delete">
+        </form>
+        </td>
+    </tr>
+
+
+  {% endfor %}
+  </table>
       <script>
         // When the user scrolls the page, execute myFunction
 window.onscroll = function() {home()};

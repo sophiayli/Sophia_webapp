@@ -1,4 +1,4 @@
-from flask import Flask,g, redirect, render_template 
+from flask import Flask,g, redirect, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def close_connection(exception):
 def home():
     return render_template("index.html")
 
-@app.route("/menu")
+@app.route("/menu",)
 def menu():
    cursor = get_db().cursor()
    sql = "SELECT * FROM item"
@@ -29,14 +29,7 @@ def menu():
    results = cursor.fetchall()
    return render_template("menu.html", results=results) 
 
-def add():
-    if request.method == "POST":
-        cursor = get_db().cursor()
-        id = int(request.form["item_id"])
-        sql = "INSERT INTO order_item(item_name,item_description,item_price) VALUES (?,?,?)"
-        cursor.execute(sql,(id,))
-        results = cursor.fetchall()
-    return redirect('/menu')
+
     
 
 @app.route("/orders")
@@ -44,20 +37,34 @@ def orders():
     cursor = get_db().cursor()
     sql = "SELECT * FROM order_item"
     cursor.execute(sql)
-    return render_template("order.html",)
+    results = cursor.fetchall()
+    return render_template("order.html", results=results)
    
-''''
-@app.route("/add", methods=["GET", "POST"])
+
+@app.route("/add", methods=["GET","POST"])
 def add():
     cursor = get_db().cursor()
-    sql = "INSERT INTO order_items(name, descriptioh, price) VALUES (?,?,?)"
-    cursor.execute(sql,)
+    new_name= request.form["item_name"]
+    new_description = request.form["item_description"]
+    new_price = int(request.form["item_price"])
+    sql = "INSERT INTO order_items(item_name, item_descriptioh, item_price) VALUES (?,?,?)"
+    cursor.execute(sql,(new_name, new_description))
+    get_db().commit()
 
-    return render_template("menu.html", results=results) 
-'''
+    return redirect('/menu')
+
+@app.route("/delete", methods=["GET", "POST"])
+def delete():
+    if request.method == "POST":
+        # getting the item then deleting it 
+        cursor = get_db().cursor()
+        object = int(request.form[item_name])
+        sql = "DELETE FROM order_item WHERE item_id=?"
+        cursor.execute(sql,(object))
+        get_db().commit()
+    return redirect ('/orders')
 
 
 
 if __name__ == "__main__":
-
-   app.run(debug=True)
+    app.run(debug=True)
