@@ -33,18 +33,14 @@
   <table class="center">
       <tr>
           <th>Item</th>
-          <th>Description</th>
-          <th>Price</th>
-
+          <th>Delete</th>
       </tr>
   {% for order_item in results %}
   <tr>
-      <td>{{ order_item[1] }}</td>
-      <td>{{ order_item[2] }}</td>
-      <td>{{ order_item[3] }}</td>
+      <td>{{ order_item[0] }}</td>
       <td>
         <form action="/delete" method="post">
-        <input type="hidden" name="item_name" value="{{order_item[0]}}">
+        <input type="hidden" name="item_id" value="{{order_item[0]}}">
         <input type="submit" value="delete">
         </form>
         </td>

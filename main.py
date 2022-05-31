@@ -1,4 +1,5 @@
-from flask import Flask,g, redirect, render_template, request, redirect
+from cgitb import text
+from flask import Flask,g, redirect, render_template, request
 import sqlite3
 
 app = Flask(__name__)
@@ -30,8 +31,6 @@ def menu():
    return render_template("menu.html", results=results) 
 
 
-    
-
 @app.route("/orders")
 def orders():
     cursor = get_db().cursor()
@@ -55,13 +54,15 @@ def add():
 
 @app.route("/delete", methods=["GET", "POST"])
 def delete():
-    if request.method == "POST":
-        # getting the item then deleting it 
+    if request.method == "POST": 
         cursor = get_db().cursor()
-        object = int(request.form[item_name])
+        print("****************")
+        print(request.form["item_id"])
+        object = str(request.form["item_id"])
         sql = "DELETE FROM order_item WHERE item_id=?"
-        cursor.execute(sql,(object))
+        cursor.execute(sql,(object,))
         get_db().commit()
+        
     return redirect ('/orders')
 
 
