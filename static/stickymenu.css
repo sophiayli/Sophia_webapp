@@ -8,7 +8,8 @@
     overflow: hidden;
     background-color: rgb(204, 27, 27);
     margin: 0px;
-    width: 150%;
+    padding:0px;
+    width: 100%;
   }
   
   /* Navbar links */
