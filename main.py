@@ -39,15 +39,18 @@ def orders():
     cursor.execute(sql)
     results = cursor.fetchall()
     return render_template("order.html", results=results)
-   
+@app.route("/faq")
+def faq():
+    return render_template("faq.html")   
 
 @app.route("/add", methods=["GET","POST"])
 def add():
-    cursor = get_db().cursor()
-    button = str(request.form["id"])
-    insert = "INSERT INTO order_items(item_id)VALUES (?)"
-    cursor.execute(insert,(button))
-    get_db().commit()
+    if request.method =="POST":
+        cursor = get_db().cursor()
+        button = int(request.form["id"])
+        insert = " INSERT INTO order_item (item_id) SELECT id FROM item WHERE id= ?"
+        cursor.execute(insert,(button))
+        get_db().commit()
     return redirect('/orders')
 
 @app.route("/delete", methods=["GET", "POST"])
@@ -60,6 +63,8 @@ def delete():
         get_db().commit()
         
     return redirect ('/orders')
+
+
 
 
 
