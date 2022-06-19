@@ -35,7 +35,7 @@ def menu():
 @app.route("/orders")
 def orders():
     cursor = get_db().cursor()
-    sql = "SELECT item.id, name, description, price FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    sql = "SELECT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
     cursor.execute(sql)
     results = cursor.fetchall()
     return render_template("order.html", results=results)
@@ -48,9 +48,10 @@ def add():
     if request.method =="POST":
         cursor = get_db().cursor()
         button = int(request.form["id"])
-        insert = " INSERT INTO order_item (item_id) SELECT id FROM item WHERE id= ?"
+        insert = "INSERT INTO item (id) SELECT id FROM item WHERE id= ?"
         cursor.execute(insert,(button))
         get_db().commit()
+
     return redirect('/orders')
 
 @app.route("/delete", methods=["GET", "POST"])
@@ -58,7 +59,7 @@ def delete():
     if request.method == "POST": 
         cursor = get_db().cursor()
         object = int(request.form["id"])
-        sql = "DELETE FROM order_item WHERE item_id=?"
+        sql = "DELETE FROM order_item WHERE id=?"
         cursor.execute(sql,(object,))
         get_db().commit()
         

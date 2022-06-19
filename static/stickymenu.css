@@ -6,7 +6,7 @@
 /* Style the navbar */
 #navbar {
     overflow: hidden;
-    background-color: rgb(204, 27, 27);
+    background-color: rgb(238, 75, 75);
     margin: 0px;
     padding:0px;
     width: 100%;
@@ -26,7 +26,9 @@
     color: black;
   }
   
-  
+  /* The nav bar takes up the whole width */
+  html,body {padding:0; margin:0;}
+
   /* Page content */
   .content {
     padding: 10px;
