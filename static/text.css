@@ -1,19 +1,41 @@
-h1{
-    color: rgb(48, 48, 48);
-    text-align: center;
-    font-size: large;
-    font-family: sans-serif;
-}
+/* h1 is for the title on each page*/
+h1 {
+  color: red;
+  text-align: center;
+  font-family: sans-serif;
+  }
+
+/* h2 is for texts in tables */
 h2 {
     color: rgb(48, 48, 48);
     font-family: sans-serif;
     font-size: medium;
-    text-align: center;
+    text-align: left;
   }
 
-  h3 {
+/* th and nav bar text */
+  th {
     color: rgb(48, 48, 48);
     font-family: sans-serif;
     font-size: large;
     text-align: center;
   }
+/* h5 is for sub-heading */
+  h5{
+    color: red;
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+  /* button text */
+  h4 {
+    color: rgb(48, 48, 48);
+    font-family: sans-serif;
+    font-size: medium;
+    text-align: left;
+  }
+
+  table.center {
+    margin-left: auto;
+    margin-right: auto;
+}

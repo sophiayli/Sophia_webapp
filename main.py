@@ -1,5 +1,3 @@
-from cgitb import text
-from ntpath import join
 from flask import Flask,g, redirect, render_template, request
 import sqlite3
 
@@ -23,7 +21,7 @@ def close_connection(exception):
 def home():
     return render_template("index.html")
 
-@app.route("/menu",)
+@app.route("/menu", methods =['GET', 'POST'])
 def menu():
    cursor = get_db().cursor()
    sql = "SELECT * FROM item"
@@ -39,6 +37,7 @@ def orders():
     cursor.execute(sql)
     results = cursor.fetchall()
     return render_template("order.html", results=results)
+
 @app.route("/faq")
 def faq():
     return render_template("faq.html")   
@@ -47,12 +46,11 @@ def faq():
 def add():
     if request.method =="POST":
         cursor = get_db().cursor()
-        button = int(request.form["id"])
-        insert = "INSERT INTO item (id) SELECT id FROM item WHERE id= ?"
-        cursor.execute(insert,(button))
+        button = int(request.form["item"])
+        insert = "INSERT INTO order_item (item_id) VALUES (?)"
+        cursor.execute(insert,(button,))
         get_db().commit()
-
-    return redirect('/orders')
+    return redirect('/menu')
 
 @app.route("/delete", methods=["GET", "POST"])
 def delete():
@@ -64,9 +62,6 @@ def delete():
         get_db().commit()
         
     return redirect ('/orders')
-
-
-
 
 
 if __name__ == "__main__":
