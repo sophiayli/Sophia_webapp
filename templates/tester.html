@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tester Page</title>    
+
+    <!---<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>--->
+    <link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>    
+    <link rel="stylesheet" href={{url_for('static',filename='text.css')}}>
+<style>
+    body {
+        margin: 0;
+        font-size: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .center 
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    tr:hover {background-color: coral;}
+    #navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+</style>
+</head>
+<body>
+    <div id="navbar">
+        <a href="http://127.0.0.1:5000/home">Home</a>
+        <a href="http://127.0.0.1:5000/menu">Menu</a>
+        <a href="http://127.0.0.1:5000/orders">Your order</a>
+        <a href="http://127.0.0.1:5000/faq">FAQ</a>
+        <a href="http://127.0.0.1:5000/tester">Tester</a>
+    </div>
+    <h1>Tester Page </h1>
+    <div id="menubar">
+        <a href="http://127.0.0.1:5000/tester#chips">Chips</a>
+        <a href="http://127.0.0.1:5000/tester#fish">Fish</a>
+        <a href="http://127.0.0.1:5000/tester#popular">Popular</a>
+    </div>
+
+    <table class="center table-hover">
+    <h2 id="chips">Chips</h2>
+    {% for item in results%}
+    <tr>    
+        <td><h2>{{ item [0] }}</h2></td>
+        <td><h2>{{ item [1] }}</h2></td>
+        <td><h2>{{ item [2] }}</h2></td>
+    </tr>
+    {% endfor %}
+</table>
+<p>
+    dtfyguyijfokpgthyjgdfhgtjhkghjgfdkhjlhgfcvkjlhgfcghkjljkhjgfkjlhjgfdsghjkljkhjgfd
+    grhbtgnyjhkmlhbgvfcvghjykljhgfdfghtjykuljhgfdffghjkljhgfdfsgkljhgffsgh
+    wesdrftgyhjrftgyhuiotyftgyhuioplfghbnjkmlrfghjklfghjkltfrfghjktrftghjktrfghjkfghjfghjdfghjkdfghjkdfghdfgh
+    asdfghjdfghsdfghjkdgfhjdfghjkdtfghjdfgh
+    ersdtfygyhujldetfghjkdefghjk
+    aewserdrftgyhkjltrtyguhujdtrfghj
+    wsedfghjkltdrfgyhjdetrfgyhutdrftgh
+    ersdrftgyuhutdryguhitrd
+    dryiuodrfghdxcfgh
+    xdfhgcgfcgfgfgdfghgghry
+</p>
+<table class="center table-hover">
+    <h2 id="fish">Fish</h2>
+    {% for item in results%}
+    <tr>    
+        <td><h2>{{ item [0] }}</h2></td>
+        <td><h2>{{ item [1] }}</h2></td>
+        <td><h2>{{ item [2] }}</h2></td>
+    </tr>
+    {% endfor %}
+
+    <p>
+        dtfyguyijfokpgthyjgdfhgtjhkghjgfdkhjlhgfcvkjlhgfcghkjljkhjgfkjlhjgfdsghjkljkhjgfd
+        grhbtgnyjhkmlhbgvfcvghjykljhgfdfghtjykuljhgfdffghjkljhgfdfsgkljhgffsgh
+        wesdrftgyhjrftgyhuiotyftgyhuioplfghbnjkmlrfghjklfghjkltfrfghjktrftghjktrfghjkfghjfghjdfghjkdfghjkdfghdfgh
+        asdfghjdfghsdfghjkdgfhjdfghjkdtfghjdfgh
+        ersdtfygyhujldetfghjkdefghjk
+        aewserdrftgyhkjltrtyguhujdtrfghj
+        wsedfghjkltdrfgyhjdetrfgyhutdrftgh
+        ersdrftgyuhutdryguhitrd
+        dryiuodrfghdxcfgh
+        xdfhgcgfcgfgfgdfghgghry
+    </p>
+    <table class="center table-hover">
+        <h2 id="popular">Popular</h2>
+        {% for item in results%}
+        <tr>    
+            <td><h2>{{ item [0] }}</h2></td>
+            <td><h2>{{ item [1] }}</h2></td>
+            <td><h2>{{ item [2] }}</h2></td>
+        </tr>
+        {% endfor %}
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {home()};
+// Get the navbar
+var navbar = document.getElementById("navbar");
+// Get the offset position of the navbar
+var sticky = navbar.offsetTop;
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function home() {
+if (window.pageYOffset >= sticky) {
+navbar.classList.add("sticky")
+} else {
+navbar.classList.remove("sticky");
+}
+}
+</script>
+</body>
+</html>

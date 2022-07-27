@@ -38,9 +38,21 @@ def orders():
     results = cursor.fetchall()
     return render_template("order.html", results=results)
 
+@app.route("/tester")
+def tester():
+    cursor = get_db().cursor()
+    chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
+    #fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
+    cursor.execute(chips)
+    results = cursor.fetchall()
+    
+    return render_template("tester.html", results=results)
+    
 @app.route("/faq")
 def faq():
     return render_template("faq.html")   
+
+
 
 @app.route("/add", methods=["GET","POST"])
 def add():
@@ -62,6 +74,9 @@ def delete():
         get_db().commit()
         
     return redirect ('/orders')
+
+
+
 
 
 if __name__ == "__main__":
