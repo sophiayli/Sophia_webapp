@@ -11,6 +11,7 @@ def get_db():
         db = g._database = sqlite3.connect(DATABASE)
     return db
 
+
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
@@ -24,10 +25,17 @@ def home():
 @app.route("/menu", methods =['GET', 'POST'])
 def menu():
    cursor = get_db().cursor()
-   sql = "SELECT * FROM item"
-   cursor.execute(sql)
-   results = cursor.fetchall()
-   return render_template("menu.html", results=results) 
+   chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
+   cursor.execute(chips)
+   chips = cursor.fetchall()
+   cursor = get_db().cursor()
+   fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
+   cursor.execute(fish)
+   fish = cursor.fetchall()
+   popular = "SELECT name, description, price FROM item WHERE type = 'Popular'"
+   cursor.execute(popular)
+   popular = cursor.fetchall()
+   return render_template("menu.html", chips = chips, fish = fish, popular = popular,)
 
 
 @app.route("/orders")
@@ -38,15 +46,20 @@ def orders():
     results = cursor.fetchall()
     return render_template("order.html", results=results)
 
-@app.route("/tester")
+@app.route("/tester", methods =['GET', 'POST'])
 def tester():
-    cursor = get_db().cursor()
-    chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
-    #fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
-    cursor.execute(chips)
-    results = cursor.fetchall()
-    
-    return render_template("tester.html", results=results)
+   cursor = get_db().cursor()
+   chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
+   cursor.execute(chips)
+   chips = cursor.fetchall()
+   cursor = get_db().cursor()
+   fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
+   cursor.execute(fish)
+   fish = cursor.fetchall()
+   popular = "SELECT name, description, price FROM item WHERE type = 'Popular'"
+   cursor.execute(popular)
+   popular = cursor.fetchall()
+   return render_template("tester.html", chips = chips, fish = fish, popular = popular,)
     
 @app.route("/faq")
 def faq():
@@ -74,7 +87,6 @@ def delete():
         get_db().commit()
         
     return redirect ('/orders')
-
 
 
 

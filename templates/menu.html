@@ -5,65 +5,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Page</title>
+    <link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
+    <link rel="stylesheet" href={{url_for('static',filename='text.css')}}>
 </head>
 
-<link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
-<link rel="stylesheet" href={{url_for('static',filename='text.css')}}>
+
 
 <body>
     <div id="navbar">
         <a href="http://127.0.0.1:5000/home"><th>Home</th></a>
-        <a href="http://127.0.0.1:5000/menu">Menu</a>
+        <a class = "active" href="http://127.0.0.1:5000/menu">Menu</a>
         <a href="http://127.0.0.1:5000/orders">Your order</a>
         <a href="http://127.0.0.1:5000/faq">FAQ</a>
       </div>
 
+      <div class="content">
     <h1>MENU</h1>
+    <div id="menubar">
+        <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
+        <a href="http://127.0.0.1:5000/menu#fish">Fish</a>
+        <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
+    </div>
 
+    <h2 id="chips">Chips</h2>
     <table class="center">
         <tr>
             <th>Item</th>
             <th>Description</th>
             <th>Price</th>
-
-        </tr>
-    {% for item in results %}
-    <tr>
-        <td><h2>{{ item [1] }}</h2></td>
-        <td><h2>{{ item [2] }}</h2></td>
-        <td><h2>{{ item [3] }}</h2></td>
-        <td>
-            <form action="/add" method="post">
-            <input type="hidden" name="item" value="{{item[0]}}">
-            <input type="submit" value="add">
-            </form>
-        </td>
-    </tr>
-
-
-    {% endfor %}
-    </table>
+            
+            
+            <table class="center table-hover">
+                
+                {% for item in chips%}
+                <tr>    
+                    <td><h2>{{ item [0] }}</h2></td>
+                    <td><h2>{{ item [1] }}</h2></td>
+                    <td><h2>{{ item [2] }}</h2></td>
+                    <td>
+                        <form action="/add" method="post">
+                        <input type="hidden" name="item" value="{{item[0]}}">
+                        <input type="submit" value="add">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+           
+            <h2 id="fish">Fish</h2> 
+           <table class="center table-hover">     
+                {% for item in fish%}
+                <tr>    
+                    <td><h2>{{ item [0] }}</h2></td>
+                    <td><h2>{{ item [1] }}</h2></td>
+                    <td><h2>{{ item [2] }}</h2></td>
+                    <td>
+                        <form action="/add" method="post">
+                        <input type="hidden" name="item" value="{{item[0]}}">
+                        <input type="submit" value="add">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            
+            
+                <table class="center table-hover">
+                    <h2 id="popular">Popular</h2>
+                    {% for item in popular%}
+                    <tr>    
+                        <td><h2>{{ item [0] }}</h2></td>
+                        <td><h2>{{ item [1] }}</h2></td>
+                        <td><h2>{{ item [2] }}</h2></td>
+                        <td>
+                            <form action="/add" method="post">
+                            <input type="hidden" name="item" value="{{item[0]}}">
+                            <input type="submit" value="add">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                </div>
     
-    
-        <script>
-            // When the user scrolls the page, execute myFunction
-    window.onscroll = function() {home()};
-    
-    // Get the navbar
-    var navbar = document.getElementById("navbar");
-    
-    // Get the offset position of the navbar
-    var sticky = navbar.offsetTop;
-    
-    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-    function home() {
-      if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-      } else {
-        navbar.classList.remove("sticky");
-      }
-    }
-        </script>
+                <script>
+                    window.onscroll = function() {myFunction()};
+                    
+                    var navbar = document.getElementById("navbar");
+                    var sticky = navbar.offsetTop;
+                    
+                    function myFunction() {
+                      if (window.pageYOffset >= sticky) {
+                        navbar.classList.add("sticky")
+                      } else {
+                        navbar.classList.remove("sticky");
+                      }
+                    }
+                    </script>
     
     </body>
  
