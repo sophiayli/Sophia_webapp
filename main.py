@@ -24,14 +24,17 @@ def home():
 
 @app.route("/menu", methods =['GET', 'POST'])
 def menu():
+   #get items with type name Chips
    cursor = get_db().cursor()
    chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
    cursor.execute(chips)
    chips = cursor.fetchall()
+   #get items with the name Fish
    cursor = get_db().cursor()
    fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
    cursor.execute(fish)
    fish = cursor.fetchall()
+   #get items with type name Popular
    popular = "SELECT name, description, price FROM item WHERE type = 'Popular'"
    cursor.execute(popular)
    popular = cursor.fetchall()

@@ -7,103 +7,118 @@
     <title>Menu Page</title>
     <link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
     <link rel="stylesheet" href={{url_for('static',filename='text.css')}}>
+    <style> 
+    *{
+      margin:0px; 
+      padding: 0px;
+      font-family: sans-serif;
+    }
+    .section{
+      width: 100%;
+      height: 10000px;
+      background-size: cover;
+      background-color: lightcoral;
+      padding-bottom: 50px;
+    }
+
+    .section h1{
+      text-align: center;
+    }
+    .container{
+      width: 1170px;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      display: flex;
+      margin:auto;
+      border: 1px solid red
+    }
+    .cards{
+      flex-basis: 22%;
+      margin: 10px 0px;
+      background-color: white;
+      box-shadow: 0px 0px 3px 0px black;
+    }
+
+    @media only screen and (min-width: 200px) and (max-width: 500px){
+      .container{
+        width: 350px;
+        flex-direction: column;
+      }
+      .cards{
+        margin: 10px;
+      }
+    
+    }
+    </style>
 </head>
-
-
-
 <body>
-    <div id="navbar">
-        <a href="http://127.0.0.1:5000/home"><th>Home</th></a>
-        <a class = "active" href="http://127.0.0.1:5000/menu">Menu</a>
-        <a href="http://127.0.0.1:5000/orders">Your order</a>
-        <a href="http://127.0.0.1:5000/faq">FAQ</a>
-      </div>
-
-      <div class="content">
-    <h1>MENU</h1>
-    <div id="menubar">
-        <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
-        <a href="http://127.0.0.1:5000/menu#fish">Fish</a>
-        <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
+  <div class="section">
+    <h1>Products</h1>
+    <div class="container">
+      <div class="cards">
+      <h3>Chips</h3>
+      <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+      <button>Add to order</button>
     </div>
+    
+    <div class="cards">
+    <h3>Chips</h3>
+    <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+    <button>Add to order</button>
+  </div>
+  <div class="cards">
+    <h3>Chips</h3>
+    <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+    <button>Add to order</button>
+  </div>
+  <div class="cards">
+    <h3>Chips</h3>
+    <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+    <button>Add to order</button>
+  </div>
+  <div class="cards">
+  <h3>Chips</h3>
+  <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+  <button>Add to order</button>
+</div>
 
-    <h2 id="chips">Chips</h2>
-    <table class="center">
-        <tr>
-            <th>Item</th>
-            <th>Description</th>
-            <th>Price</th>
-            
-            
-            <table class="center table-hover">
-                
-                {% for item in chips%}
-                <tr>    
-                    <td><h2>{{ item [0] }}</h2></td>
-                    <td><h2>{{ item [1] }}</h2></td>
-                    <td><h2>{{ item [2] }}</h2></td>
-                    <td>
-                        <form action="/add" method="post">
-                        <input type="hidden" name="item" value="{{item[0]}}">
-                        <input type="submit" value="add">
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-           
-            <h2 id="fish">Fish</h2> 
-           <table class="center table-hover">     
-                {% for item in fish%}
-                <tr>    
-                    <td><h2>{{ item [0] }}</h2></td>
-                    <td><h2>{{ item [1] }}</h2></td>
-                    <td><h2>{{ item [2] }}</h2></td>
-                    <td>
-                        <form action="/add" method="post">
-                        <input type="hidden" name="item" value="{{item[0]}}">
-                        <input type="submit" value="add">
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            
-            
-                <table class="center table-hover">
-                    <h2 id="popular">Popular</h2>
-                    {% for item in popular%}
-                    <tr>    
-                        <td><h2>{{ item [0] }}</h2></td>
-                        <td><h2>{{ item [1] }}</h2></td>
-                        <td><h2>{{ item [2] }}</h2></td>
-                        <td>
-                            <form action="/add" method="post">
-                            <input type="hidden" name="item" value="{{item[0]}}">
-                            <input type="submit" value="add">
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </table>
-                </div>
-    
-                <script>
-                    window.onscroll = function() {myFunction()};
-                    
-                    var navbar = document.getElementById("navbar");
-                    var sticky = navbar.offsetTop;
-                    
-                    function myFunction() {
-                      if (window.pageYOffset >= sticky) {
-                        navbar.classList.add("sticky")
-                      } else {
-                        navbar.classList.remove("sticky");
-                      }
-                    }
-                    </script>
-    
-    </body>
- 
+<div class="cards">
+  <h3>Chips</h3>
+  <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+  <button>Add to order</button>
+</div>
+<div class="cards">
+  <h3>Chips</h3>
+  <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+  <button>Add to order</button>
+</div>
+<div class="cards">
+  <h3>Chips</h3>
+  <p>Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah blagh</p>
+  <button>Add to order</button>
+</div>
+
+</div>
+</div>
+
+</body>
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
+</body>
+
 
 </html>
 
