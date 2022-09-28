@@ -11,7 +11,7 @@
 <body>
 
 <link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
-<link rel="stylesheet" href={{url_for('static',filename='text.css')}}>
+<!---<link rel="stylesheet" href={{url_for('static',filename='text.css')}}>--->
 
   <div id="navbar">
       <a href="http://127.0.0.1:5000/home">Home</a>
@@ -23,18 +23,17 @@
   <h1>YOUR ITEMS</h1>
   <table class="center">
       <tr>
-        <th>Qty</th>
         <th>Item</th>
         <th>Description</th>
         <th>Price</th>
         <th>Delete?</th>
       </tr>
   {% for item in results %}
-<tr>
+<tr class ="order">
     <td><h2></h2></td>
     <td><h2>{{ item [1] }}</h2></td>
     <td><h2>{{ item [2] }}</h2></td>
-    <td><h2>${{ item [3] }}</h2></td>
+    <td><h2>{{ item [3] }}</h2></td>
     <td>
       <form action="/delete" method="post">
         <input type="hidden" name="id" value="{{item[4]}}">
@@ -43,6 +42,7 @@
     </td>  
 </tr>
   {% endfor %}
+  
   
   </table>
   </div>

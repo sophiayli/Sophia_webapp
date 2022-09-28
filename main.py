@@ -22,54 +22,46 @@ def close_connection(exception):
 def home():
     return render_template("index.html")
 
+#get items of a certain name 
 @app.route("/menu", methods =['GET', 'POST'])
 def menu():
-   #get items with type name Chips
    cursor = get_db().cursor()
-   chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
+   chips = "SELECT id, name, description, price FROM item WHERE type = 'Chips'"
    cursor.execute(chips)
    chips = cursor.fetchall()
-   #get items with the name Fish
    cursor = get_db().cursor()
-   fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
+   fish = "SELECT id, name, description, price FROM item WHERE type = 'Fish'"
    cursor.execute(fish)
    fish = cursor.fetchall()
-   #get items with type name Popular
-   popular = "SELECT name, description, price FROM item WHERE type = 'Popular'"
+   popular = "SELECT id, name, description, price FROM item WHERE type = 'Popular'"
    cursor.execute(popular)
    popular = cursor.fetchall()
+   
    return render_template("menu.html", chips = chips, fish = fish, popular = popular,)
 
-
+#deleting an item of the id called for
 @app.route("/orders")
 def orders():
     cursor = get_db().cursor()
     sql = "SELECT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
     cursor.execute(sql)
     results = cursor.fetchall()
-    return render_template("order.html", results=results)
+    return render_template("order.html", results=results,)
 
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():
-   cursor = get_db().cursor()
-   chips = "SELECT name, description, price FROM item WHERE type = 'Chips'"
-   cursor.execute(chips)
-   chips = cursor.fetchall()
-   cursor = get_db().cursor()
-   fish = "SELECT name, description, price FROM item WHERE type = 'Fish'"
-   cursor.execute(fish)
-   fish = cursor.fetchall()
-   popular = "SELECT name, description, price FROM item WHERE type = 'Popular'"
-   cursor.execute(popular)
-   popular = cursor.fetchall()
-   return render_template("tester.html", chips = chips, fish = fish, popular = popular,)
+    cursor = get_db().cursor()
+    sql = "SELECT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    return render_template("tester.html", results=results)
     
 @app.route("/faq")
 def faq():
     return render_template("faq.html")   
 
 
-
+#adding items to an order
 @app.route("/add", methods=["GET","POST"])
 def add():
     if request.method =="POST":
@@ -80,6 +72,7 @@ def add():
         get_db().commit()
     return redirect('/menu')
 
+#deleting items from an order
 @app.route("/delete", methods=["GET", "POST"])
 def delete():
     if request.method == "POST": 

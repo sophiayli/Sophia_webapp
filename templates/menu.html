@@ -27,32 +27,52 @@
         <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
     </div>
 
-    <h2 id="chips">Chips</h2>
-    <table class="center">
-        <tr>
-            <th>Item</th>
-            <th>Description</th>
-            <th>Price</th>
+    <h2 id="chips">Chips</h2>            
+        <div class="container">
+        {% for item in chips%}
+        <div class="cards">
+        <h3>{{item[1]}}               {{item[3]}}</h3> 
+        <p>{{item [2]}}</p>
+        <form action="/add" method="post">
+        <input type="hidden" name="item" value="{{item[0]}}">
+        <input type="submit" value="add">
+        </form>
+    </div>
+    {% endfor %}  
+    </div>
+    <h2 id="fish">Fish</h2>            
+    <div class="container">
+    {% for item in fish%}
+    <div class="cards">
+    <h3>{{item[1]}} {{item[3]}}</h3>
+    <p>{{item [2]}}</p>
+    <form action="/add" method="post">
+    <input type="hidden" name="item" value="{{item[0]}}">
+    <input type="submit" value="add">
+    </form>
+</div>
+{% endfor %}  
+</div>
+
+<h2 id="popular">Popular</h2>            
+        <div class="container">
+        {% for item in popular%}
+        <div class="cards">
+        <h3>{{item[1]}} {{item[3]}}</h3>
+        <p>{{item [2]}}</p>
+        <form action="/add" method="post">
+        <input type="hidden" name="item" value="{{item[0]}}">
+        <input type="submit" value="add">
+        </form>
+    </div>
+    {% endfor %}  
+    </div>
+
+</div>
+
             
-            
-            <table class="center table-hover">
-                
-                {% for item in chips%}
-                <tr>    
-                    <td><h2>{{ item [0] }}</h2></td>
-                    <td><h2>{{ item [1] }}</h2></td>
-                    <td><h2>{{ item [2] }}</h2></td>
-                    <td>
-                        <form action="/add" method="post">
-                        <input type="hidden" name="item" value="{{item[0]}}">
-                        <input type="submit" value="add">
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
            
-            <h2 id="fish">Fish</h2> 
+            <!---<h2 id="fish">Fish</h2> 
            <table class="center table-hover">     
                 {% for item in fish%}
                 <tr>    
@@ -85,7 +105,7 @@
                     </tr>
                     {% endfor %}
                     </table>
-                </div>
+                </div>--->
     
                 <script>
                     window.onscroll = function() {myFunction()};
