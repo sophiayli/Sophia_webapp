@@ -39,7 +39,6 @@ def menu():
    
    return render_template("menu.html", chips = chips, fish = fish, popular = popular,)
 
-#deleting an item of the id called for
 @app.route("/orders")
 def orders():
     cursor = get_db().cursor()
@@ -51,10 +50,15 @@ def orders():
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():
     cursor = get_db().cursor()
-    sql = "SELECT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
-    cursor.execute(sql)
+    distinct = "SELECT DISTINCT item_id FROM order_item ORDER by item_id "
+    '''SELECT DISTINCT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id ORDER BY item_id"    '''
+    '''cursor.execute(sql)
     results = cursor.fetchall()
-    return render_template("tester.html", results=results)
+    cursor = get_db().cursor()
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"'''
+    cursor.execute(distinct)
+    distinct = cursor.fetchall()
+    return render_template("tester.html", distinct = distinct)
     
 @app.route("/faq")
 def faq():
