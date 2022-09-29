@@ -50,15 +50,14 @@ def orders():
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():
     cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id FROM order_item ORDER by item_id "
-    '''SELECT DISTINCT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id ORDER BY item_id"    '''
-    '''cursor.execute(sql)
-    results = cursor.fetchall()
+    sql = "SELECT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    cursor.execute(sql)
+    distinct = cursor.fetchall()
     cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"'''
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
     cursor.execute(distinct)
     distinct = cursor.fetchall()
-    return render_template("tester.html", distinct = distinct)
+    return render_template("tester.html", sql = sql, distinct = distinct)
     
 @app.route("/faq")
 def faq():
