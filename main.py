@@ -42,10 +42,14 @@ def menu():
 @app.route("/orders")
 def orders():
     cursor = get_db().cursor()
-    sql = "SELECT item.id, name, description, price, order_item.id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    sql = "SELECT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
     cursor.execute(sql)
-    results = cursor.fetchall()
-    return render_template("order.html", results=results,)
+    distinct = cursor.fetchall()
+    cursor = get_db().cursor()
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    cursor.execute(distinct)
+    distinct = cursor.fetchall()
+    return render_template("order.html", sql = sql, distinct= distinct,)
 
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():
