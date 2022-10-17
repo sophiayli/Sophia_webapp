@@ -166,6 +166,13 @@ th {
   box-shadow: 0px 0px 3px 0px black;
 }
 
+.td{
+  flex-basis: 25%;
+  margin: 0px 0px 0px 0px;
+  border:rgb(48, 48, 0);
+  background-color: white;
+}
+
 /* making content in a container flex*/
 @media only screen and (min-width: 200px) and (max-width: 500px){
   .container{
@@ -174,6 +181,10 @@ th {
   }
   .cards{
     margin: 10px;
+  }
+
+  .td{
+
   }
 
 }

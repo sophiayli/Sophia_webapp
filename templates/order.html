@@ -20,7 +20,35 @@
       <a href="http://127.0.0.1:5000/faq">FAQ</a>
     </div>
   <div class="content">
-  <h1>YOUR ITEMS</h1>
+  
+<div class = 'container'>
+  {% for item in count%}
+  <div class="cards">
+    <h3>{{item[0]}}</h3>
+    </div>
+{% endfor %}
+
+{% for item in distinct%}
+    <div class ="cards">
+      <h3>{{ item [1] }}</h3>
+    </div>
+  {% endfor %}
+
+{% for item in distinct%}
+    <div class ="cards">
+      <h3>{{ item [2] }}</h3>
+    </div>
+{% endfor %}
+
+{% for item in distinct%}
+    <div class ="cards">
+      <h3>{{ item [3] }}</h3>
+    </div>
+{% endfor %}
+</div>
+
+      <!--<tr class ="hover table-styling">
+        <h1>YOUR ITEMS</h1>
   <table class="center table-styling">
       <tr>
         <th>Quantity</th>
@@ -29,11 +57,9 @@
         <th>Price</th>
         <th>Delete?</th>
       </tr>
-
-      <tr class ="hover table-styling">
         {% for item in count%}
         <tr><h2>{{ item [1] }}</h2></tr>
-        {% endfor%}
+        {% endfor%}</div>
   {% for item in distinct%}
     <td><h2>{{ item [1] }}</h2></td>
     <td><h2>{{ item [2] }}</h2></td>
@@ -48,7 +74,7 @@
 {% endfor %}
   
   
-  </table>
+  </table>--->
   </div>
   <script>
     window.onscroll = function() {myFunction()};
