@@ -49,12 +49,12 @@ def orders():
 
 
     cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id ORDER BY item_id"
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id GROUP BY item_id"
     cursor.execute(distinct)
     distinct = cursor.fetchall()
 
     cursor = get_db().cursor()
-    count = "SELECT COUNT (item_id) FROM order_item GROUP BY item_id"
+    count = "SELECT item_id, COUNT(*) item_id FROM order_item GROUP BY item_id"
     cursor.execute(count)
     count = cursor.fetchall()
 

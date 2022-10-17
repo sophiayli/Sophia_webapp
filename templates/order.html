@@ -29,10 +29,10 @@
         <th>Price</th>
         <th>Delete?</th>
       </tr>
+
       <tr class ="hover table-styling">
         {% for item in count%}
-        <tc><h2>{{ item [0] }}</h2></tc>
-        {% endfor %}
+        <tr><h2>{{ item [0] }}</h2></tr>
   {% for item in distinct%}
     <td><h2>{{ item [1] }}</h2></td>
     <td><h2>{{ item [2] }}</h2></td>
@@ -44,6 +44,7 @@
       </form>
     </td>  
 </tr>
+{% endfor %}
   {% endfor %}
   
   
