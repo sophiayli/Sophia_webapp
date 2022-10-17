@@ -29,6 +29,7 @@ def menu():
    chips = "SELECT id, name, description, price FROM item WHERE type = 'Chips'"
    cursor.execute(chips)
    chips = cursor.fetchall()
+
    cursor = get_db().cursor()
    fish = "SELECT id, name, description, price FROM item WHERE type = 'Fish'"
    cursor.execute(fish)
@@ -44,12 +45,20 @@ def orders():
     cursor = get_db().cursor()
     sql = "SELECT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
     cursor.execute(sql)
-    distinct = cursor.fetchall()
+    sql = cursor.fetchall()
+
+
     cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id ORDER BY item_id"
     cursor.execute(distinct)
     distinct = cursor.fetchall()
-    return render_template("order.html", sql = sql, distinct= distinct,)
+
+    cursor = get_db().cursor()
+    count = "SELECT COUNT (item_id) FROM order_item GROUP BY item_id"
+    cursor.execute(count)
+    count = cursor.fetchall()
+
+    return render_template("order.html", sql = sql, distinct= distinct, count=count)
 
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():

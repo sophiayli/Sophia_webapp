@@ -23,20 +23,23 @@
   <h1>YOUR ITEMS</h1>
   <table class="center table-styling">
       <tr>
+        <th>Quantity</th>
         <th>Item</th>
         <th>Description</th>
         <th>Price</th>
         <th>Delete?</th>
       </tr>
+      <tr class ="hover table-styling">
+        {% for item in count%}
+        <td><h2>{{ item [0] }}</h2></td>
+        {% endfor %}
   {% for item in distinct%}
-<tr class ="hover table-styling">
-    <td><h2></h2></td>
     <td><h2>{{ item [1] }}</h2></td>
     <td><h2>{{ item [2] }}</h2></td>
     <td><h2>{{ item [3] }}</h2></td>
     <td>
       <form action="/delete" method="post">
-        <input type="hidden" name="id" value="{{item[4]}}">
+        <input type="hidden" name="id" value="{{item[0]}}">
         <input type="submit" value="delete">
       </form>
     </td>  
