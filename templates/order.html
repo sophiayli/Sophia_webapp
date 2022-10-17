@@ -33,6 +33,7 @@
       <tr class ="hover table-styling">
         {% for item in count%}
         <tr><h2>{{ item [1] }}</h2></tr>
+        {% endfor%}
   {% for item in distinct%}
     <td><h2>{{ item [1] }}</h2></td>
     <td><h2>{{ item [2] }}</h2></td>
@@ -45,7 +46,6 @@
     </td>  
 </tr>
 {% endfor %}
-  {% endfor %}
   
   
   </table>
