@@ -21,27 +21,27 @@
     </div>
   <div class="content">
   
-<div class = 'container'>
+<div class = 'row'>
   {% for item in count%}
-  <div class="cards">
-    <h3>{{item[0]}}</h3>
+  <div id = "Quantity">
+    <h3>{{item[1]}}</h3>
     </div>
 {% endfor %}
 
 {% for item in distinct%}
-    <div class ="cards">
+    <div id ="Item">
       <h3>{{ item [1] }}</h3>
     </div>
   {% endfor %}
 
 {% for item in distinct%}
-    <div class ="cards">
+    <div id ="Description">
       <h3>{{ item [2] }}</h3>
     </div>
 {% endfor %}
 
 {% for item in distinct%}
-    <div class ="cards">
+    <div id ="Price">
       <h3>{{ item [3] }}</h3>
     </div>
 {% endfor %}

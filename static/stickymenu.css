@@ -166,13 +166,32 @@ th {
   box-shadow: 0px 0px 3px 0px black;
 }
 
-.td{
-  flex-basis: 25%;
-  margin: 0px 0px 0px 0px;
-  border:rgb(48, 48, 0);
-  background-color: white;
+.row{
+  width: 70%;
+  flex-wrap: wrap;
+  justify-content: stretch-auto;
+  display:flex;
+  margin:auto;
+  border:rgb(48, 48, 0)
 }
 
+
+#Quantity{
+  width:25%;
+  background: rgb(196, 65, 65);
+}
+#Item{
+  width:25%;
+  background: rgb(189, 189, 55);
+}
+#Description{
+  width:25%;
+  background:rgb(63, 142, 161);
+}
+#Price{
+  width:25%;
+  background: rgb(122, 63, 161);
+}
 /* making content in a container flex*/
 @media only screen and (min-width: 200px) and (max-width: 500px){
   .container{
