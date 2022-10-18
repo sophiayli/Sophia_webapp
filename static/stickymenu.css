@@ -183,6 +183,8 @@ th {
   background: rgb(196, 65, 65);
   height: 50px;
   margin: auto;
+  box-sizing: border-box;
+  padding: 0.5pc 0.3pc;
 }
 
 .Item{
@@ -190,6 +192,8 @@ th {
   background: rgb(189, 189, 55);
   height: 50px;
   margin: auto;
+  box-sizing: border-box;
+  padding: 0.5pc 0.3pc;
 }
 
 .Description{
@@ -197,6 +201,8 @@ th {
   background:rgb(63, 142, 161);
   height: 50px;
   margin: auto;
+  box-sizing: border-box;
+  padding: 0.5pc 0.3pc;
 
 }
 
@@ -205,6 +211,8 @@ th {
   background:rgb(172, 112, 212);
   height: 50px;
   margin: auto;
+  box-sizing: border-box;
+  padding: 0.5pc 0.3pc;
 }
 
 /* making content in a container flex*/
