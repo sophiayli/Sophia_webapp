@@ -167,7 +167,7 @@ th {
 }
 
 .row{
-  width: 80%;
+  width: 60%;
   flex-wrap: wrap;
   display:flex;
   margin:auto;
@@ -175,12 +175,14 @@ th {
 }
 
 .column{
+  border-style: solid hidden hidden hidden;
   border-bottom: #333;
+  border-width: 1px;
 }
 
 .Quantity{
   width:10%;
-  background: rgb(196, 65, 65);
+  background: rgb(214, 201, 193);
   height: 50px;
   margin: auto;
   box-sizing: border-box;
@@ -188,8 +190,8 @@ th {
 }
 
 .Item{
-  width:20%;
-  background: rgb(189, 189, 55);
+  width:35%;
+  background: rgb(214, 201, 193);
   height: 50px;
   margin: auto;
   box-sizing: border-box;
@@ -197,8 +199,8 @@ th {
 }
 
 .Description{
-  width:30%;
-  background:rgb(63, 142, 161);
+  width:40%;
+  background:rgb(214, 201, 193);
   height: 50px;
   margin: auto;
   box-sizing: border-box;
@@ -207,8 +209,8 @@ th {
 }
 
 .Price{
-  width:40%;
-  background:rgb(172, 112, 212);
+  width: 15%;
+  background:rgb(214, 201, 193);
   height: 50px;
   margin: auto;
   box-sizing: border-box;
