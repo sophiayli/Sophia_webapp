@@ -167,32 +167,48 @@ th {
 }
 
 .row{
-  width: 70%;
+  width: 80%;
   flex-wrap: wrap;
-  justify-content: stretch-auto;
   display:flex;
   margin:auto;
-  border:rgb(48, 48, 0)
+  border:rgb(48, 48, 0);
 }
 
+.column{
+  border-bottom: #333;
+}
 
-#Quantity{
-  width:25%;
+.Quantity{
+  width:10%;
   background: rgb(196, 65, 65);
+  height: 50px;
+  margin: auto;
 }
-#Item{
-  width:25%;
+
+.Item{
+  width:20%;
   background: rgb(189, 189, 55);
+  height: 50px;
+  margin: auto;
 }
-#Description{
-  width:25%;
+
+.Description{
+  width:30%;
   background:rgb(63, 142, 161);
+  height: 50px;
+  margin: auto;
+
 }
-#Price{
-  width:25%;
-  background: rgb(122, 63, 161);
+
+.Price{
+  width:40%;
+  background:rgb(172, 112, 212);
+  height: 50px;
+  margin: auto;
 }
+
 /* making content in a container flex*/
+
 @media only screen and (min-width: 200px) and (max-width: 500px){
   .container{
     width: 350px;
@@ -202,8 +218,6 @@ th {
     margin: 10px;
   }
 
-  .td{
-
-  }
+  
 
 }
