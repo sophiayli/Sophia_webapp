@@ -12,21 +12,22 @@
 
 
 <body>
+    
     <div id="navbar">
-        <a href="http://127.0.0.1:5000/home"><th>Home</th></a>
+        <a href="http://127.0.0.1:5000/"><th>Home</th></a>
         <a class = "active" href="http://127.0.0.1:5000/menu">Menu</a>
         <a href="http://127.0.0.1:5000/orders">Your order</a>
-        <a href="http://127.0.0.1:5000/faq">FAQ</a>
-      </div>
-
-      <div class="content">
-    <h1>MENU</h1>
+        <a href="http://127.0.0.1:5000/faq">FAQ</a></div>
+      <h1>MENU</h1>
     <div id="menubar">
         <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
         <a href="http://127.0.0.1:5000/menu#fish">Fish</a>
         <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
     </div>
 
+<div class="content">
+    
+<!---Chips section-->
     <h2 id="chips">Chips</h2>            
         <div class="container">
         {% for item in chips%}
@@ -54,6 +55,7 @@
 {% endfor %}  
 </div>
 
+<!---Popular section-->
 <h2 id="popular">Popular</h2>            
         <div class="container">
         {% for item in popular%}
@@ -67,26 +69,27 @@
     </div>
     {% endfor %}  
     </div>
+    <h2 id="fish">Fish</h2> 
+    <table class="center table-hover">     
+         {% for item in fish%}
+         <tr>    
+             <td><h2>{{ item [0] }}</h2></td>
+             <td><h2>{{ item [1] }}</h2></td>
+             <td><h2>{{ item [2] }}</h2></td>
+             <td>
+                 <form action="/add" method="post">
+                 <input type="hidden" name="item" value="{{item[0]}}">
+                 <input type="submit" value="add">
+                 </form>
+             </td>
+         </tr>
+         {% endfor %}
 
 </div>
 
             
            
-            <!---<h2 id="fish">Fish</h2> 
-           <table class="center table-hover">     
-                {% for item in fish%}
-                <tr>    
-                    <td><h2>{{ item [0] }}</h2></td>
-                    <td><h2>{{ item [1] }}</h2></td>
-                    <td><h2>{{ item [2] }}</h2></td>
-                    <td>
-                        <form action="/add" method="post">
-                        <input type="hidden" name="item" value="{{item[0]}}">
-                        <input type="submit" value="add">
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
+            <!---
             
             
                 <table class="center table-hover">

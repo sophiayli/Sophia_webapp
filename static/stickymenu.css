@@ -10,10 +10,7 @@
 /* Styling the navbar */
 #navbar {
     overflow: hidden;
-    background-color: rgb(238, 75, 75);
-    /*margin: 0px;
-    padding:0px;
-    width: 100%;*/
+    background-color: rgb(212, 85, 35);
   }
   
 /* Navbar link styling */
@@ -27,8 +24,15 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   #navbar a:hover {
-    background-color: #ddd;
+    background-color: rgba(243, 186, 63, 0.705);
     color: black;
+  }
+/*styling the homepage image */
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
   }
   
 /* The nav bar takes up the whole width - removes padding*/
@@ -52,7 +56,7 @@ body {
   }
   
   #navbar a.active {
-    background-color: #72c90e;
+    background-color: #c09666;
     color: white;
   }
   /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
@@ -75,7 +79,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     }
     #menubar a:hover {
-    background-color: #ddd;
+    background-color: rgba(245, 207, 80, 0.63);
     color: black;
     } 
     
@@ -175,16 +179,16 @@ th {
 }
 
 .column{
-  border-style: solid hidden hidden hidden;
-  border-bottom: #333;
-  border-width: 1px;
+  border-bottom: solid;
+  border-color: #333;
+  border-width: 2px;
 }
 
 .Quantity{
   width:10%;
   background: rgb(214, 201, 193);
   height: 50px;
-  margin: auto;
+  margin: 0px;
   box-sizing: border-box;
   padding: 0.5pc 0.3pc;
 }
@@ -193,7 +197,7 @@ th {
   width:35%;
   background: rgb(214, 201, 193);
   height: 50px;
-  margin: auto;
+  margin: 0px;
   box-sizing: border-box;
   padding: 0.5pc 0.3pc;
 }
@@ -202,7 +206,7 @@ th {
   width:40%;
   background:rgb(214, 201, 193);
   height: 50px;
-  margin: auto;
+  margin: 0px;
   box-sizing: border-box;
   padding: 0.5pc 0.3pc;
 

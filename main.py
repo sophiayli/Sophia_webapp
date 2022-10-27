@@ -19,6 +19,7 @@ def close_connection(exception):
         db.close()
 
 @app.route("/home")
+@app.route("/",)
 def home():
     return render_template("index.html")
 
@@ -49,28 +50,28 @@ def orders():
 
 
     cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id ORDER BY item_id"
     cursor.execute(distinct)
     distinct = cursor.fetchall()
 
     cursor = get_db().cursor()
-    count = "SELECT item_id, COUNT(*) as quantity FROM order_item GROUP BY item_id"
+    count = "SELECT item_id, COUNT(*) as quantity FROM order_item GROUP BY item_id ORDER BY item_id"
     cursor.execute(count)
     count = cursor.fetchall()
 
-    return render_template("order.html", sql = sql, distinct= distinct, count=count)
+    return render_template("tester.html", sql = sql, distinct= distinct, count=count)
 
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():
     cursor = get_db().cursor()
-    sql = "SELECT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
-    cursor.execute(sql)
-    distinct = cursor.fetchall()
-    cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    distinct = "select name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by name order by ct desc"
     cursor.execute(distinct)
     distinct = cursor.fetchall()
-    return render_template("tester.html", sql = sql, distinct = distinct)
+    '''cursor = get_db().cursor()
+    distinct = "SELECT DISTINCT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
+    cursor.execute(distinct)
+    distinct = cursor.fetchall()'''
+    return render_template("tester.html", distinct = distinct)
     
 @app.route("/faq")
 def faq():
