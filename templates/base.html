@@ -6,16 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
     </head>
-<header>
+<!--nav bar area-->
+<nav>
     <div id="navbar">
-        <a href="http://127.0.0.1:5000/">Home</a>
-        <a href="http://127.0.0.1:5000/menu">Menu</a>
-        <a href="http://127.0.0.1:5000/orders">Your order</a>
-        <a href="http://127.0.0.1:5000/faq">FAQ</a>
-        <a href="http://127.0.0.1:5000/tester">Tester</a>
-</div>
-</header>
-<!---Header Area finishes -->
+        <ul>
+            <li><a href="http://127.0.0.1:5000/" class="nav-link">Home</a></li>
+            <li><a href="http://127.0.0.1:5000/menu" class="nav-link">Menu</a></li>
+            <li><a href="http://127.0.0.1:5000/orders" class="nav-link">Your order</a></li>
+            <li><a href="http://127.0.0.1:5000/faq" class="nav-link">FAQ</a></li>
+            <li><a href="http://127.0.0.1:5000/tester" class = "nav-link">Tester</a></li>
+        </ul>
+        
+    </div>
+</nav>
+<!---Nav bar Area finishes -->
         
 {% block content%}
 {% endblock %}
@@ -36,11 +40,20 @@ navbar.classList.remove("sticky");
 }
 }
 
-const activePage = window.location.pathname;
-const navLinks = document.querySelectorAll('header a').
-forEach(link =>{
-    if(link.href.includes(`${activePage}`)){
-        link.classList.add('active');
-    }})
+document.querySelectorAll('.nav-link').forEach
+(link=> {
+    if(link.href === window.location.href){
+        link.setAttribute('aria-current', 'page')
+    }
+})
+
+/* only worked when active page was hard coded in
+    const items = document.querySelectorAll("ul li");
+    items.forEach((item) => {
+        item.addEventListener("click", () => {
+            document.querySelector("li.active").classList.remove("active");
+            item.classList.add("active");
+    });
+    });  */
 </script>
 </html>
