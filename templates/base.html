@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<header>
+<link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
+<div id="navbar">
+    <a href="http://127.0.0.1:5000/">Home</a>
+    <a href="http://127.0.0.1:5000/menu">Menu</a>
+    <a class = "active" href="http://127.0.0.1:5000/orders">Your order</a>
+    <a href="http://127.0.0.1:5000/faq">FAQ</a>
+</div>
+</header>
+<!---Header Area finishes -->
+        
+{% block content%}
+{% endblock %}
+
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+            </script>
+
+        </html>

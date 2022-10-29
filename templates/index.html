@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +21,6 @@ table.center {
     
     </style>
 <body>
-  <div id="navbar">
-    <a href ="http://127.0.0.1:5000/">Home</a>
-    <a href="http://127.0.0.1:5000/menu">Menu</a>
-    <a href="http://127.0.0.1:5000/orders">Your order</a>
-    <a href="http://127.0.0.1:5000/faq">FAQ</a>
-    <a href="http://127.0.0.1:5000/tester">Tester</a>
-  </div>
     <div class="content">
     <h1>Welcome to the home page</h1>
     <img src= "static/img/indexpagefiller.png" alt="shop front">
@@ -44,25 +39,7 @@ table.center {
   </table>
 </p>    
 </div>
-    <script>
-        // When the user scrolls the page, execute myFunction
-window.onscroll = function() {home()};
-
-// Get the navbar
-var navbar = document.getElementById("navbar");
-
-// Get the offset position of the navbar
-var sticky = navbar.offsetTop
-
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function home() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}
-    </script>
 
 </body>
 </html>
+{% endblock %}

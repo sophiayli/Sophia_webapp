@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +12,7 @@
 </head>
 
 
-
 <body>
-    
-    <div id="navbar">
-        <a href="http://127.0.0.1:5000/"><th>Home</th></a>
-        <a class = "active" href="http://127.0.0.1:5000/menu">Menu</a>
-        <a href="http://127.0.0.1:5000/orders">Your order</a>
-        <a href="http://127.0.0.1:5000/faq">FAQ</a></div>
       <h1>MENU</h1>
     <div id="menubar">
         <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
@@ -110,25 +105,13 @@
                     </table>
                 </div>--->
     
-                <script>
-                    window.onscroll = function() {myFunction()};
-                    
-                    var navbar = document.getElementById("navbar");
-                    var sticky = navbar.offsetTop;
-                    
-                    function myFunction() {
-                      if (window.pageYOffset >= sticky) {
-                        navbar.classList.add("sticky")
-                      } else {
-                        navbar.classList.remove("sticky");
-                      }
-                    }
-                    </script>
-    
+                
     </body>
  
 
 </html>
+{% endblock %}
+
 
 
 
