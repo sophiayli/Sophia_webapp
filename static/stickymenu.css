@@ -57,6 +57,40 @@ html,body {
     text-underline-offset: 0.5rem;
   }
 
+ul{
+  display: flex;
+  justify-content: center;
+}
+
+li{
+  list-style: none;
+  margin-left:30px;
+}
+
+li a{
+  text-decoration: none;
+  color:#da2c91;
+}
+
+li a::after{
+  content: ' ';
+  width: 0;
+  height: 3px;
+  background-color: cornflowerblue;
+  margin: auto;
+  display: block;
+}
+
+li a:hover:after{
+  width: 100%; 
+  transition: width 0.3s linear;
+  margin-top: 0px;
+}
+
+li a:hover{
+  color: cornflowerblue;
+}
+/*this method of hover made the lien too long
 .nav{
   display: grid;
   place-items: center;
@@ -89,7 +123,7 @@ html,body {
   text-decoration: underline 100%;
   transform-origin: bottom left; 
   transform: scaleX(1);
-}
+}*/
 
 /*li a:hover {
   text-decoration:underline;
