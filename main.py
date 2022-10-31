@@ -37,10 +37,15 @@ def menu():
    popular = "SELECT id, name, description, price FROM item WHERE type = 'Popular'"
    cursor.execute(popular)
    popular = cursor.fetchall()
-   
-   return render_template("menu.html", chips = chips, fish = fish, popular = popular,)
 
-@app.route("/orders")
+   cursor = get_db().cursor()
+   distinct = "select item_id, name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by item_id order by item_id"
+   cursor.execute(distinct)
+   distinct = cursor.fetchall()
+   
+   return render_template("menu.html", chips = chips, fish = fish, popular = popular, distinct =distinct,)
+
+@app.route("/orders", methods =['GET', 'POST'])
 def orders():
     cursor = get_db().cursor()
     sql = "SELECT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
@@ -64,7 +69,7 @@ def orders():
 @app.route("/tester", methods =['GET', 'POST'])
 def tester():
     cursor = get_db().cursor()
-    distinct = "select name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by item_id order by item_id"
+    distinct = "select item_id, name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by item_id order by item_id"
     cursor.execute(distinct)
     distinct = cursor.fetchall()
     return render_template("tester.html", distinct = distinct)
@@ -91,11 +96,11 @@ def delete():
     if request.method == "POST": 
         cursor = get_db().cursor()
         object = int(request.form["id"])
-        sql = "DELETE FROM order_item WHERE id=?"
+        sql = "DELETE FROM order_item WHERE item_id=?"
         cursor.execute(sql,(object,))
         get_db().commit()
         
-    return redirect ('/orders')
+    return redirect ('/menu')
 
 
 

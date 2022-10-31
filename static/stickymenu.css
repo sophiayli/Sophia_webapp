@@ -3,7 +3,7 @@
 }
 /*setting body margin*/
 body {
-  margin: 0;
+  padding:0; margin: 0;
 }
 /* Page content */
   .content {
@@ -15,21 +15,14 @@ body {
   padding: 10px;
 }
 
-/* The nav bar takes up the whole width - removes padding*/
-html,body {
-  padding:0; margin:0;
-}
-
-
-
+/*---Nav bar styling---*/
 
 /* Styling the navbar */
 #navbar {
     overflow: hidden;
     background-color: rgb(212, 85, 35);
   }
-  
-
+/*---Stling the links---*/
 .nav-link{
   float: left;
   display: block;
@@ -41,15 +34,6 @@ html,body {
   justify-content: space-around;
   margin:auto;
 }
-
-/*#navbar a {
-    float: left;
-    display: block;
-    text-align: center;
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    justify-content: space-around;
-  }*/
 
 /* styling the active link on nav bar,*/
 .nav-link[aria-current="page"]{
@@ -72,6 +56,7 @@ li a{
   color:#da2c91;
 }
 
+/*---Styling the nav bar when hovering---*/
 li a::after{
   content: ' ';
   width: 0;
@@ -90,72 +75,6 @@ li a:hover:after{
 li a:hover{
   color: cornflowerblue;
 }
-/*this method of hover made the lien too long
-.nav{
-  display: grid;
-  place-items: center;
-}
- ul{
-  display: flex;
-  list-style:none; 
-}
- ul li a{
-  text-decoration: none;
-  margin: 0 25px;
-  position: relative;
-}
-
- ul li a:after{
- content: '' ;
- position: absolute;
- width:100%;
- height: 3px;
- text-decoration: underline 0;
- background-color: #ecdee7;
- bottom: 0;
- left: 0;
- transform: scaleX(0);
- transform-origin: bottom right;
- transition: transform 0.25s linear;
-}
-
- ul li a:hover:after{
-  text-decoration: underline 100%;
-  transform-origin: bottom left; 
-  transform: scaleX(1);
-}*/
-
-/*li a:hover {
-  text-decoration:underline;
-}*/
-/*
-ul{
-  list-style-type:none;
-  display: flex;
-}
-  
-*ul li{
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-    display:inline-block;
-  }
-  
-a:after {
-    position: absolute;
-    content: "";
-    height: 0.15rem;
-    width: 0;
-    background-color: green;
-    left: 0;
-    bottom: 0.5rem;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    transition: 0.5s;
-  }
-a:hover:after{
-  width:100%;
-}*/
 
 /*styling the homepage image */
   img {
@@ -173,13 +92,13 @@ a:hover:after{
   }
   
 
-  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
   .sticky + .content {
     padding-top: 60px;
   }
 
-
-  #menubar {
+/*---Stling the menu nav bar---*/
+#menubar {
     overflow: hidden;
     background-color: #333;}
     
@@ -204,22 +123,17 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   }
 
-/* h2 is for texts in tables */
+/* h2 is heading for each section*/
 h2 {
     color: rgb(48, 48, 48);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: 35px;
     text-align: left;
   }
+h3{
+  font-size:medium;
+}
 
-/* th and nav bar text */
-  
-/* h5 is for sub-heading */
-  h5{
-    color: red;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-  }
 
   /* button text */
   h4 {
@@ -229,11 +143,20 @@ h2 {
     text-align: left;
   }
 
-/*table stylinng */ 
-  table.center {
-    margin-left: auto;
-    margin-right: auto;
+  
+/* h5 is for sub-heading */
+h5{
+  color: red;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/*table stylinng */ 
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 th {
   color: rgb(48, 48, 48);
@@ -291,51 +214,12 @@ th {
   margin:auto;
   border:rgb(48, 48, 0);
 }
-/*div styling for order page 
-.column{
-  border-bottom: solid;
-  border-color: #333;
-  border-width: 2px;
+/*---Stling the delete button---*/
+#button{
 }
 
-.Quantity{
-  width:10%;
-  background: rgb(214, 201, 193);
-  height: 50px;
-  margin: 0px;
-  box-sizing: border-box;
-  padding: 0.5pc 0.3pc;
-}
 
-.Item{
-  width:35%;
-  background: rgb(214, 201, 193);
-  height: 50px;
-  margin: 0px;
-  box-sizing: border-box;
-  padding: 0.5pc 0.3pc;
-}
-
-.Description{
-  width:40%;
-  background:rgb(214, 201, 193);
-  height: 50px;
-  margin: 0px;
-  box-sizing: border-box;
-  padding: 0.5pc 0.3pc;
-
-}
-
-.Price{
-  width: 15%;
-  background:rgb(214, 201, 193);
-  height: 50px;
-  margin: auto;
-  box-sizing: border-box;
-  padding: 0.5pc 0.3pc;
-} */
-
-/* making content in a container flex*/
+/* making content in a container flex on */
 
 @media only screen and (min-width: 200px) and (max-width: 500px){
   .container{
@@ -345,7 +229,4 @@ th {
   .cards{
     margin: 10px;
   }
-
-  
-
 }

@@ -8,35 +8,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Page</title>
     <link rel="stylesheet" href={{url_for('static',filename='stickymenu.css')}}>
-    <link rel="stylesheet" href={{url_for('static',filename='text.css')}}>
 </head>
 
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+.content{
+    display:grid;
+    height: 100vh;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 0.8fr 0.4fr;
+    grid-template-areas: 
+        "nav nav"
+        "menu order-sidebar";
+    grid-gap:0.5rem 1.0rem;
+
+}
+section{
+    height: 100vh;
+    width: 100%;
+}
+nav{
+    position: sticky;
+    top: 60px;
+    grid-area: nav;
+}
+
+/*---Styling the grids in menu page ---*/
+#menu{
+    grid-area: menu;
+    background-color: aqua;
+    padding: 10vmin;
+}
+
+#order-sidebar{
+    grid-area: order-sidebar;}
+
+.item{
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.3fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-areas: 
+    "name price add"
+    "description description description"
+}
+
+#name{grid-area:name;}
+
+#price{grid-area: price;}
+
+#add{grid-area:add;}
+
+#description{grid-area:description;}
+
+@media only screen and (max-width:700px){
+    .content{
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 1.5fr 0.7fr;
+        grid-template-areas: 
+            "nav"
+            "menu"
+            "order-sidebar"
+        ;
+    }
+}
+
+h6{
+    text-align: right;
+}
+
+
+
+</style>
 
 <body>
     <div class="content">
-    <h1>MENU</h1>
+<!--- Menu sections navigation bar-->
+    <nav>
     <div id="menubar">
+        <h1>MENU</h1>
         <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
         <a href="http://127.0.0.1:5000/menu#fish">Fish</a>
         <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
     </div>
+    </nav>
+    <div id="menu">
+    {% for item in popular%}
+    <div class="item">
+    <div id="name">{{item [1]}}</div>
+    <div id="price">{{item [3]}}</div>
+    <div id="add">
+        <form action="/add" method="post">
+        <input type="hidden" name="item" value="{{item[0]}}">
+        <input type="submit" value="add">
+        </form></div>
+    <div id="description">{{item [2]}}</div>
+    <br>
+    </div>
+    {% endfor %}
+    </div>
 
-
+    <div id ="order-sidebar">
+        <table class="center">
+            <tr>
+              <th>Qty</th>
+              <th>Item</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+        {% for item in distinct %}
+      <tr>
+          <td><h3>{{ item [4] }}</h3></td>
+          <td><h3>{{ item [1] }}</h3></td>
+          <td><h3>{{ item [2] }}</h3></td>
+          <td><h3>{{ item [3]}}</h3></td>
+          <td>
+                <form action="/delete" method="post">
+                <input type="hidden" name="id" value="{{item[0]}}">
+                <input class = "button" type="submit" value="delete">
+                </form>
+          {% endfor %}
+    </div>
     
-<!---Chips section-->
+
+<!--Display items in separate sections and tables 
+<table class=" table-hover">
+        <h2 id="popular">Popular</h2>
+        {% for item in popular%}
+        <tr>    
+            <td><h3>{{ item [1] }}</h3></td>
+            <td><h3>{{ item [2] }}</h3></td>
+            <td><h3>{{ item [3] }}</h3></td>
+            <td>
+                <form action="/add" method="post">
+                <input type="hidden" name="item" value="{{item[0]}}">
+                <input type="submit" value="add">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </table>    
+        <div class ="Description">
+            <h2>Description</h2>
+            {% for item in distinct%}
+                <div class = "column">
+                  <h3>{{ item [2] }}</h3>
+                </div>
+            {% endfor %}
+          </div>  --->
+<!---Chips section, displaying items in divs and sections
+<h2 id="chips">Chips</h2>            
+<div class="container">
+{% for item in chips%}
+<div class="cards">
+<h3>{{item[1]}}       {{item[3]}}</h6> 
+<p>{{item [2]}}</p>
+<form action="/add" method="post">
+<input type="hidden" name="item" value="{{item[0]}}">
+<input type="submit" value="add">
+</form>
+<form action="/delete" method>
+
+</form>
+</div>
+{% endfor %} --->
+
+
+
+
+
+
+
+<!---Chips section, displaying items in divs and sections
     <h2 id="chips">Chips</h2>            
         <div class="container">
         {% for item in chips%}
         <div class="cards">
-        <h3>{{item[1]}}               {{item[3]}}</h3> 
+        <h3>{{item[1]}} {{item[3]}}</h3> 
         <p>{{item [2]}}</p>
         <form action="/add" method="post">
         <input type="hidden" name="item" value="{{item[0]}}">
         <input type="submit" value="add">
         </form>
+        <form action="/delete" method>
+
+        </form>
     </div>
     {% endfor %}  
     </div>
+
     <h2 id="fish">Fish</h2>            
     <div class="container">
     {% for item in fish%}
@@ -51,7 +213,7 @@
 {% endfor %}  
 </div>
 
-<!---Popular section-->
+Displaying items in divs and sections
 <h2 id="popular">Popular</h2>            
         <div class="container">
         {% for item in popular%}
@@ -81,30 +243,8 @@
          </tr>
          {% endfor %}
 
-</div>
+</div>--->
 
-            
-           
-            <!---
-            
-            
-                <table class="center table-hover">
-                    <h2 id="popular">Popular</h2>
-                    {% for item in popular%}
-                    <tr>    
-                        <td><h2>{{ item [0] }}</h2></td>
-                        <td><h2>{{ item [1] }}</h2></td>
-                        <td><h2>{{ item [2] }}</h2></td>
-                        <td>
-                            <form action="/add" method="post">
-                            <input type="hidden" name="item" value="{{item[0]}}">
-                            <input type="submit" value="add">
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </table>
-                </div>--->
     
                 
     </body>
