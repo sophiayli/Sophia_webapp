@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html'%}
+{% block content%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +18,9 @@
     display:grid;
     height: 100vh;
     grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: 0.8fr 0.4fr;
+    grid-template-rows: 1fr;
     grid-template-areas: 
-        "nav nav"
+        /*"nav nav"*/
         "menu order-sidebar";
     grid-gap:0.5rem 1.0rem;
 
@@ -31,21 +31,22 @@ section{
 }
 nav{
     position: sticky;
-    top: 60px;
+    bottom: 30px;
     grid-area: nav;
 }
 
 /*---Styling the grids in menu page ---*/
 #menu{
     grid-area: menu;
-    background-color: aqua;
-    padding: 10vmin;
+    padding-left: 10vmin;
+    padding-right: 20vmin;
 }
 
 #order-sidebar{
     grid-area: order-sidebar;}
 
 .item{
+    border-bottom: solid 1px;
     display: grid;
     grid-template-columns: 1fr 0.5fr 0.3fr;
     grid-template-rows: 0.5fr 0.5fr;
@@ -54,7 +55,10 @@ nav{
     "description description description"
 }
 
-#name{grid-area:name;}
+#name{
+    grid-area:name;
+    font: Arial bold;
+}
 
 #price{grid-area: price;}
 
@@ -78,14 +82,16 @@ h6{
     text-align: right;
 }
 
+.br{
+    display: block;
+    margin-bottom: 0.5em;
+}
 
 
 </style>
 
 <body>
-    <div class="content">
-<!--- Menu sections navigation bar-->
-    <nav>
+   <nav>
     <div id="menubar">
         <h1>MENU</h1>
         <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
@@ -93,7 +99,11 @@ h6{
         <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
     </div>
     </nav>
+     <div class="content">
+<!--- Menu sections navigation bar-->
+    
     <div id="menu">
+        <h1 id="popular">Popular</h1>
     {% for item in popular%}
     <div class="item">
     <div id="name">{{item [1]}}</div>
@@ -104,12 +114,29 @@ h6{
         <input type="submit" value="add">
         </form></div>
     <div id="description">{{item [2]}}</div>
-    <br>
     </div>
+    <br>
     {% endfor %}
+
+    <h1 id="chips">Chips</h1>
+    {% for item in chips%}
+    <div class="item">
+    <span><div id="name">{{item [1]}}</div>
+    <div id="price">{{item [3]}}</div>
+    <div id="add">
+        <form action="/add" method="post">
+        <input type="hidden" name="item" value="{{item[0]}}">
+        <input type="submit" value="add">
+        </form></div>
+    <div id="description">{{item [2]}}</div>
+    </div>
+    <br>
+    {% endfor %}
+</span>
     </div>
 
     <div id ="order-sidebar">
+        <h1>Cart</h1>
         <table class="center">
             <tr>
               <th>Qty</th>

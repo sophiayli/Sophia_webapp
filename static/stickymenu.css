@@ -3,7 +3,7 @@
 }
 /*setting body margin*/
 body {
-  padding:0; margin: 0;
+  padding:0px; margin: 0;
 }
 /* Page content */
   .content {
@@ -37,9 +37,12 @@ body {
 
 /* styling the active link on nav bar,*/
 .nav-link[aria-current="page"]{
-    text-decoration: underline green 0.15rem;
-    text-underline-offset: 0.5rem;
-  }
+  text-decoration: underline rgb(255, 218, 56) 0.2rem;
+  text-underline-offset: 0.27rem;
+}
+
+
+
 
 ul{
   display: flex;
@@ -53,7 +56,6 @@ li{
 
 li a{
   text-decoration: none;
-  color:#da2c91;
 }
 
 /*---Styling the nav bar when hovering---*/
@@ -61,7 +63,8 @@ li a::after{
   content: ' ';
   width: 0;
   height: 3px;
-  background-color: cornflowerblue;
+  text-underline-offset: 0.5rem;
+  background-color: rgb(255, 218, 56);
   margin: auto;
   display: block;
 }
@@ -73,7 +76,7 @@ li a:hover:after{
 }
 
 li a:hover{
-  color: cornflowerblue;
+  color: #d8dee7;
 }
 
 /*styling the homepage image */
@@ -100,7 +103,10 @@ li a:hover{
 /*---Stling the menu nav bar---*/
 #menubar {
     overflow: hidden;
-    background-color: #333;}
+    background-color: #333;
+    position: fixed;
+    width:100%;
+  }
     
     #menubar a {
     float: left;
@@ -165,10 +171,7 @@ th {
   text-align: center;
 }
 
-.hover:hover 
-{
-  background-color: #da2c91;
-}
+
 
 .table-styling
 {
@@ -214,9 +217,7 @@ th {
   margin:auto;
   border:rgb(48, 48, 0);
 }
-/*---Stling the delete button---*/
-#button{
-}
+/*---Styling the delete button---*/
 
 
 /* making content in a container flex on */
