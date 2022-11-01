@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +16,31 @@
     border: none;
   }
 
-
+nav{
+  position: sticky;
+  top: 0;
+}
 </style>
 
 
 <body>
+  <nav>
+    <div id="navbar" class="nav">
+        <ul>
+            <li><a href="http://127.0.0.1:5000/" class="nav-link hover">Home</a></li>
+            <li><a href="http://127.0.0.1:5000/menu" class="nav-link hover">Menu</a></li>
+            <li><a href="http://127.0.0.1:5000/faq" class="nav-link hover">FAQ</a></li>
+            <li><a href="http://127.0.0.1:5000/tester" class = "nav-link hover">Tester</a></li>
+        </ul>
+    </div>
+    <div id="menubar">
+      <h1>MENU</h1>
+      <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
+      <a href="http://127.0.0.1:5000/menu#fish">Fish</a>
+      <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
+  </div>
+</nav>
+  
   <div class="content">
   <h1>TESTER PAGE</h1>
   <table class="center">
@@ -57,13 +76,14 @@
     </td>  
 </tr>
   {% endfor %}
-  
-  
   </table>
-
+  <p>text for scrolling</p>
+  <p>text for scrolling</p>
+  <p>text for scrolling</p>
+  <p>text for scrolling</p>
+  <p>text for scrolling</p>
+  <p>text for scrolling</p>
   </div>
-
 </body>
-{% endblock %}
 
 </html>
