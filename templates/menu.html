@@ -1,5 +1,4 @@
-{% extends 'base.html'%}
-{% block content%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +14,10 @@
         scroll-behavior: smooth;
     }
 .content{
-    padding-top: 10rem;
     display:grid;
     height: 100vh;
     grid-template-columns: 1.5fr 1fr;
+    /*grid-template-rows: 0.8fr 0.4fr;*/
     grid-template-rows: 1fr;
     grid-template-areas: 
         /*"nav nav"*/
@@ -32,19 +31,21 @@ section{
 }
 nav{
     position: sticky;
-    bottom: 30px;
     grid-area: nav;
 }
 
 /*---Styling the grids in menu page ---*/
 #menu{
     grid-area: menu;
+    padding: 10vmin;
     padding-left: 10vmin;
     padding-right: 20vmin;
 }
 
 #order-sidebar{
-    grid-area: order-sidebar;}
+    grid-area: order-sidebar;
+    padding: 10vmin;
+}
 
 .item{
     border-bottom: solid 1px;
@@ -58,12 +59,19 @@ nav{
 
 #name{
     grid-area:name;
-    font: Arial bold;
+    padding-top: 3vmin;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#price{grid-area: price;}
+#price{
+    grid-area: price;
+    padding-top:3vmin;
+}
 
-#add{grid-area:add;}
+#add{
+    grid-area:add;
+    padding-top: 3vmin;
+}
 
 #description{grid-area:description;}
 
@@ -83,16 +91,19 @@ h6{
     text-align: right;
 }
 
-.br{
-    display: block;
-    margin-bottom: 0.5em;
-}
 
 
 </style>
 
 <body>
-   <nav>
+    <nav>
+        <div id="navbar" class="nav">
+            <ul>
+                <li><a href="http://127.0.0.1:5000/" class="nav-link hover">Home</a></li>
+                <li><a href="http://127.0.0.1:5000/menu" class="nav-link hover">Menu</a></li>
+                <li><a href="http://127.0.0.1:5000/faq" class="nav-link hover">FAQ</a></li>
+            </ul>
+            </div>
     <div id="menubar">
         <h1>MENU</h1>
         <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
@@ -100,12 +111,30 @@ h6{
         <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
     </div>
     </nav>
-     <div class="content">
-<!--- Menu sections navigation bar-->
+    <div class="content">
+<!--- Menu  navigation bar ends-->
     
     <div id="menu">
-        <h1 id="popular">Popular</h1>
+        <br>
+        <br>
+        <br>
+        <h1 id="popular"> Popular</h1>
     {% for item in popular%}
+    <div class="item">
+    <div id="name">{{item [1]}}</div>
+    <div id="price">{{item [3]}}</div>
+    <div id="add">
+        <form action="/add" method="post">
+        <input type="hidden" name="item" value="{{item[0]}}">
+        <input type="submit" value="add">
+        </form></div>
+    <div id="description">{{item [2]}}</div>
+    <br>
+    </div>
+    {% endfor %}
+
+    <h1 id="chips">Chips</h1>
+    {% for item in chips%}
     <div class="item">
     <div id="name">{{item [1]}}</div>
     <div id="price">{{item [3]}}</div>
@@ -118,26 +147,13 @@ h6{
     </div>
     <br>
     {% endfor %}
-
-    <h1 id="chips">Chips</h1>
-    {% for item in chips%}
-    <div class="item">
-    <span><div id="name">{{item [1]}}</div>
-    <div id="price">{{item [3]}}</div>
-    <div id="add">
-        <form action="/add" method="post">
-        <input type="hidden" name="item" value="{{item[0]}}">
-        <input type="submit" value="add">
-        </form></div>
-    <div id="description">{{item [2]}}</div>
     </div>
+
+<div id ="order-sidebar">
     <br>
-    {% endfor %}
-</span>
-    </div>
-
-    <div id ="order-sidebar">
-        <h1>Cart</h1>
+    <br>
+    <br>
+    <h1>Cart</h1>
         <table class="center">
             <tr>
               <th>Qty</th>
@@ -148,7 +164,7 @@ h6{
             </tr>
         {% for item in distinct %}
       <tr>
-          <td><h3>{{ item [4] }}</h3></td>
+          <td><h3>{{ item [4] }}x</h3></td>
           <td><h3>{{ item [1] }}</h3></td>
           <td><h3>{{ item [2] }}</h3></td>
           <td><h3>{{ item [3]}}</h3></td>
@@ -276,10 +292,40 @@ Displaying items in divs and sections
     
                 
     </body>
- 
+    <script>
+        // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {home()};
+    // Get the navbar
+    var navbar = document.getElementById("navbar");
+    // Get the offset position of the navbar
+    var sticky = navbar.offsetTop
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function home() {
+    if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+    } else {
+    navbar.classList.remove("sticky");
+    }
+    }
+    
+    document.querySelectorAll('.nav-link').forEach
+    (link=> {
+        if(link.href === window.location.href){
+            link.setAttribute('aria-current', 'page')
+        }
+    })
+    
+    /* only worked when active page was hard coded in*/
+        const items = document.querySelectorAll("ul li");
+        items.forEach((item) => {
+            item.addEventListener("click", () => {
+                document.querySelector("li.active").classList.remove("active");
+                item.classList.add("active");
+        });
+        });  
+    </script> 
 
 </html>
-{% endblock %}
 
 
 
