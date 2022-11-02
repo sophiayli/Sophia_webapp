@@ -10,73 +10,26 @@
 </head>
 
 <style>
-    html {
-        scroll-behavior: smooth;
-        scroll-padding-top: var(--scroll-padding,280px);
-    }
+
+/*applying CSS grid to the content*/
 .content{
     display:grid;
     height: 100vh;
     grid-template-columns: 1.5fr 1fr;
-    /*grid-template-rows: 0.8fr 0.4fr;*/
     grid-template-rows: 1fr;
     grid-template-areas: 
-        /*"nav nav"*/
         "menu order-sidebar";
     grid-gap:0.5rem 1.0rem;
 
 }
-section{
-    height: 100vh;
-    width: 100%;
-}
+
+/*Styling nav tag*/
 nav{
     position: sticky;
     grid-area: nav;
 }
 
-/*---Styling the grids in menu page ---*/
-#menu{
-    grid-area: menu;
-    padding: 10vmin;
-    padding-left: 10vmin;
-    padding-right: 20vmin;
-}
-
-#order-sidebar{
-    grid-area: order-sidebar;
-    padding: 10vmin;
-    overflow: scroll;
-}
-
-.item{
-    border-bottom: solid 1px;
-    display: grid;
-    grid-template-columns: 1fr 0.5fr 0.3fr;
-    grid-template-rows: 0.5fr 0.5fr;
-    grid-template-areas: 
-    "name price add"
-    "description description description"
-}
-
-#name{
-    grid-area:name;
-    padding-top: 3vmin;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-#price{
-    grid-area: price;
-    padding-top:3vmin;
-}
-
-#add{
-    grid-area:add;
-    padding-top: 3vmin;
-}
-
-#description{grid-area:description;}
-
+/*Rearranging grid elements when sxreen size reaches 700px*/
 @media only screen and (max-width:700px){
     .content{
         grid-template-columns: 1fr;
@@ -98,30 +51,32 @@ h6{
 </style>
 
 <body>
+    <!---Menu/ navigation bar begins-->
     <nav>
         <div id="navbar" class="nav">
             <ul>
                 <li><a href="http://127.0.0.1:5000/" class="nav-link hover">Home</a></li>
                 <li><a href="http://127.0.0.1:5000/menu" class="nav-link hover">Menu</a></li>
-                <li><a href="http://127.0.0.1:5000/faq" class="nav-link hover">FAQ</a></li>
             </ul>
             </div>
     <div id="menubar">
         <h1>MENU</h1>
         <ul>
+            <li><a href="http://127.0.0.1:5000/menu#popular">Popular</a></li>
             <li><a href="http://127.0.0.1:5000/menu#chips">Chips</a></li>
             <li><a href="http://127.0.0.1:5000/menu#fish">Fish</a></li>
-            <li><a href="http://127.0.0.1:5000/menu#popular">Popular</a></li>
         </ul>
     </div>
-    </nav>
-    <div class="content">
-<!--- Menu  navigation bar ends-->
-    
-    <div id="menu">
+</nav>
+<!--- Menu/ navigation bar section ends-->
+
+<div class="content">
+<!---Displaying menu grid-->    
+<div id="menu">
         <br>
         <br>
         <br>
+<!--Displaying menu items that are popular-->
         <h1 id="popular"> Popular</h1>
     {% for item in popular%}
     <div class="item">
@@ -142,7 +97,7 @@ h6{
     <br>
     <br>
     <br>
-
+<!--Displaying menu items that are chips-->
     <h1 id="chips">Chips</h1>
     {% for item in chips%}
     <div class="item">
@@ -153,12 +108,33 @@ h6{
         <input type="hidden" name="item" value="{{item[0]}}">
         <input type="submit" value="add">
         </form></div>
-    <div id="description">{{item [2]}}</div>
-    </div>
-    <br>
-    {% endfor %}
-    </div>
+<div id="description">{{item [2]}}</div>
+<br>
+</div>
+<br>
+{% endfor %}
+<!--Displaying menu items that are fish-->
+<h1 id="fish">Fish</h1>
+    {% for item in chips%}
+    <div class="item">
+    <div id="name">{{item [1]}}</div>
+    <div id="price">{{item [3]}}</div>
+    <div id="add">
+        <form action="/add" method="post">
+        <input type="hidden" name="item" value="{{item[0]}}">
+        <input type="submit" value="add">
+        </form></div>
+<div id="description">{{item [2]}}</div>
+<br>
+</div>
+<br>
+{% endfor %}
 
+</div>
+
+
+    
+<!---Displaying the cart-grid-->
 <div id ="order-sidebar">
     <br>
     <br>
@@ -166,10 +142,10 @@ h6{
     <h1>Cart</h1>
         <table class="center">
             <tr>
-              <th>Qty</th>
-              <th>Item</th>
-              <th>Description</th>
-              <th>Price</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
               <th></th>
             </tr>
         {% for item in distinct %}
@@ -185,125 +161,10 @@ h6{
                 </form>
           {% endfor %}
     </div>
-    
-
-<!--Display items in separate sections and tables 
-<table class=" table-hover">
-        <h2 id="popular">Popular</h2>
-        {% for item in popular%}
-        <tr>    
-            <td><h3>{{ item [1] }}</h3></td>
-            <td><h3>{{ item [2] }}</h3></td>
-            <td><h3>{{ item [3] }}</h3></td>
-            <td>
-                <form action="/add" method="post">
-                <input type="hidden" name="item" value="{{item[0]}}">
-                <input type="submit" value="add">
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-        </table>    
-        <div class ="Description">
-            <h2>Description</h2>
-            {% for item in distinct%}
-                <div class = "column">
-                  <h3>{{ item [2] }}</h3>
-                </div>
-            {% endfor %}
-          </div>  --->
-<!---Chips section, displaying items in divs and sections
-<h2 id="chips">Chips</h2>            
-<div class="container">
-{% for item in chips%}
-<div class="cards">
-<h3>{{item[1]}}       {{item[3]}}</h6> 
-<p>{{item [2]}}</p>
-<form action="/add" method="post">
-<input type="hidden" name="item" value="{{item[0]}}">
-<input type="submit" value="add">
-</form>
-<form action="/delete" method>
-
-</form>
-</div>
-{% endfor %} --->
-
-
-
-
-
-
-
-<!---Chips section, displaying items in divs and sections
-    <h2 id="chips">Chips</h2>            
-        <div class="container">
-        {% for item in chips%}
-        <div class="cards">
-        <h3>{{item[1]}} {{item[3]}}</h3> 
-        <p>{{item [2]}}</p>
-        <form action="/add" method="post">
-        <input type="hidden" name="item" value="{{item[0]}}">
-        <input type="submit" value="add">
-        </form>
-        <form action="/delete" method>
-
-        </form>
-    </div>
-    {% endfor %}  
-    </div>
-
-    <h2 id="fish">Fish</h2>            
-    <div class="container">
-    {% for item in fish%}
-    <div class="cards">
-    <h3>{{item[1]}} {{item[3]}}</h3>
-    <p>{{item [2]}}</p>
-    <form action="/add" method="post">
-    <input type="hidden" name="item" value="{{item[0]}}">
-    <input type="submit" value="add">
-    </form>
-</div>
-{% endfor %}  
-</div>
-
-Displaying items in divs and sections
-<h2 id="popular">Popular</h2>            
-        <div class="container">
-        {% for item in popular%}
-        <div class="cards">
-        <h3>{{item[1]}} {{item[3]}}</h3>
-        <p>{{item [2]}}</p>
-        <form action="/add" method="post">
-        <input type="hidden" name="item" value="{{item[0]}}">
-        <input type="submit" value="add">
-        </form>
-    </div>
-    {% endfor %}  
-    </div>
-    <h2 id="fish">Fish</h2> 
-    <table class="center table-hover">     
-         {% for item in fish%}
-         <tr>    
-             <td><h2>{{ item [0] }}</h2></td>
-             <td><h2>{{ item [1] }}</h2></td>
-             <td><h2>{{ item [2] }}</h2></td>
-             <td>
-                 <form action="/add" method="post">
-                 <input type="hidden" name="item" value="{{item[0]}}">
-                 <input type="submit" value="add">
-                 </form>
-             </td>
-         </tr>
-         {% endfor %}
-
-</div>--->
-
-    
                 
     </body>
     <script>
-        // When the user scrolls the page, execute myFunction
+        // When the user scrolls the page, execute home function
     window.onscroll = function() {home()};
     // Get the navbar
     var navbar = document.getElementById("navbar");
@@ -317,7 +178,7 @@ Displaying items in divs and sections
     navbar.classList.remove("sticky");
     }
     }
-    
+//select the active route and put active class styling on it
     document.querySelectorAll('.nav-link').forEach
     (link=> {
         if(link.href === window.location.href){
@@ -325,19 +186,11 @@ Displaying items in divs and sections
         }
     })
     
-    /* only worked when active page was hard coded in*/
-        const items = document.querySelectorAll("ul li");
-        items.forEach((item) => {
-            item.addEventListener("click", () => {
-                document.querySelector("li.active").classList.remove("active");
-                item.classList.add("active");
-        });
-        });  
-    /*find the height of nav bar and add this padding*/
-    const navigationHeight = document.querySelector('nav').offsetHeight
-    document.documentElement.style.setProperty('--scroll-padding', navigationHeight + 120 + "px");
-    </script> 
 
+/*find the height of nav bar and add this to scroll padding*/
+    const navigationHeight = document.querySelector('nav').offsetHeight
+        document.documentElement.style.setProperty('--scroll-padding', navigationHeight + 160 + "px");
+</script>
 </html>
 
 

@@ -17,12 +17,12 @@ def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
-
+#route to homepage
 @app.route("/",)
 def home():
     return render_template("index.html")
 
-#displaying items from item table, and separate them
+#displaying items from item table, and separate them, and display cart
 @app.route("/menu", methods =['GET', 'POST'])
 def menu():
    cursor = get_db().cursor()
@@ -38,6 +38,7 @@ def menu():
    cursor.execute(popular)
    popular = cursor.fetchall()
 
+#getting items for the cart to be displayed
    cursor = get_db().cursor()
    distinct = "select item_id, name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by item_id order by item_id"
    cursor.execute(distinct)
@@ -45,38 +46,9 @@ def menu():
    
    return render_template("menu.html", chips = chips, fish = fish, popular = popular, distinct =distinct,)
 
-@app.route("/orders", methods =['GET', 'POST'])
-def orders():
-    cursor = get_db().cursor()
-    sql = "SELECT item_id, name, description, price, order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id"
-    cursor.execute(sql)
-    sql = cursor.fetchall()
 
 
-    cursor = get_db().cursor()
-    distinct = "select name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by item_id order by item_id"
-    cursor.execute(distinct)
-    distinct = cursor.fetchall()
 
-    '''
-    cursor = get_db().cursor()
-    distinct = "SELECT DISTINCT item_id, FROM order_item order_item.item_id FROM item INNER JOIN order_item ON item.id = order_item.item_id GROUP BY item_id ORDER BY item_id"
-    cursor.execute(distinct)
-    count = cursor.fetchall()'''
-
-    return render_template("order.html", sql = sql, distinct= distinct, )
-
-@app.route("/tester", methods =['GET', 'POST'])
-def tester():
-    cursor = get_db().cursor()
-    distinct = "select item_id, name, description, price, count(*) as ct from item INNER JOIN order_item ON item.id = order_item.item_id group by item_id order by item_id"
-    cursor.execute(distinct)
-    distinct = cursor.fetchall()
-    return render_template("tester.html", distinct = distinct)
-    
-@app.route("/faq")
-def faq():
-    return render_template("faq.html")   
 
 
 #adding items to an order

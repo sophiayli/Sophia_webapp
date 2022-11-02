@@ -12,18 +12,18 @@
         <ul>
             <li><a href="http://127.0.0.1:5000/" class="nav-link hover">Home</a></li>
             <li><a href="http://127.0.0.1:5000/menu" class="nav-link hover">Menu</a></li>
-            <li><a href="http://127.0.0.1:5000/faq" class="nav-link hover">FAQ</a></li>
         </ul>
         
     </div>
 </nav>
+
 <!---Nav bar Area finishes -->
         
 {% block content%}
 {% endblock %}
 
 <script>
-    // When the user scrolls the page, execute myFunction
+    // When the user scrolls the page, execute home function
 window.onscroll = function() {home()};
 // Get the navbar
 var navbar = document.getElementById("navbar");
@@ -38,6 +38,7 @@ navbar.classList.remove("sticky");
 }
 }
 
+/*Finding and applying active route class to active route*/
 document.querySelectorAll('.nav-link').forEach
 (link=> {
     if(link.href === window.location.href){
@@ -45,13 +46,17 @@ document.querySelectorAll('.nav-link').forEach
     }
 })
 
-/* only worked when active page was hard coded in*/
+/*Putting the active class on the active <li> in the nav bar
     const items = document.querySelectorAll("ul li");
     items.forEach((item) => {
         item.addEventListener("click", () => {
             document.querySelector("li.active").classList.remove("active");
             item.classList.add("active");
     });
-    });  
+    });  */
+/*find the height of nav bar and add this padding*/
+const navigationHeight = document.querySelector('nav').offsetHeight
+    document.documentElement.style.setProperty('--scroll-padding', navigationHeight + 160 + "px");
+    </script> 
 </script>
 </html>

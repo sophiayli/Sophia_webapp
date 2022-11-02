@@ -2,7 +2,10 @@
   font-family: sans-serif;
 }
 
-
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--scroll-padding,280px);
+}
 /*setting body margin*/
 body {
   padding:0px; margin: 0;
@@ -17,12 +20,12 @@ body {
   padding: 10px;
 }
 
-/*---Nav bar styling---*/
+/*---------------Nav bar styling------------*/
 
 /* Styling the navbar */
 #navbar {
     overflow: hidden;
-    background-color: rgba(212, 85, 35, 0.171);
+    background-color: rgb(212, 85, 35);
   }
 /*---Styling the links---*/
 .nav-link{
@@ -30,7 +33,7 @@ body {
   display: block;
   color: #d8dee7;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   justify-content: space-around;
@@ -50,25 +53,20 @@ body {
   width: 100%;
 }
 
-
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
   padding-top: 60px;
 }
-
-
 
 /*Styling the nav bar no hover and not active*/
 ul{
   display: flex;
   justify-content: center;
 }
-
 li{
   list-style: none;
   margin-left:30px;
 }
-
 li a{
   text-decoration: none;
 }
@@ -83,32 +81,58 @@ li a::after{
   margin: auto;
   display: block;
 }
-
 li a:hover:after{
   width: 100%; 
   transition: width 0.3s linear;
   margin-top: 0px;
 }
-
 li a:hover{
   color: #d8dee7;
 }
-/*---Home page styling---*/
+/*------------Home page styling------------*/
 /*styling the homepage image */
   img {
     display: block;
+    margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 100%;
   }
+/* h2 is heading for each section*/
+h2 {
+  color: rgb(48, 48, 48);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: left;
+}
 
-/*---Styling the menu page---*/
+/* h5 is for sub-heading */
+h5{
+  color: red;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+table.home-table{
+  margin-left: auto;
+  margin-right: auto;
+}
+td.home-table{
+  width: 90px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/*------------Styling the menu page------------*/
 /*---Styling the menu nav bar---*/
 #menubar {
     overflow: hidden;
-    background-color: rgba(51, 51, 51, 0.089);
+    background-color: rgb(51, 51, 51);
     position: fixed;
     width:100%;
+    margin-top: 18px;
   }
     
 #menubar a {
@@ -116,7 +140,7 @@ li a:hover{
   display: block;
   color: #d8dee7;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -134,19 +158,13 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   }
 
-/* h2 is heading for each section*/
-h2 {
-    color: rgb(48, 48, 48);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 35px;
-    text-align: left;
-  }
+
 h3{
   font-size:medium;
 }
 
 
-/* button text - should add a button styling class*/
+/* button text*/
 h4 {
   color: rgb(48, 48, 48);
   font-family: Arial, Helvetica, sans-serif;
@@ -155,12 +173,7 @@ h4 {
   }
 
   
-/* h5 is for sub-heading */
-h5{
-  color: red;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
+
 
 /*table stylinng */ 
 table.center {
@@ -190,7 +203,7 @@ th {
 /*---Styling the delete button---*/
 
 
-/* making content in a container flex on */
+/* making content in a container flex on 
 
 @media only screen and (min-width: 200px) and (max-width: 500px){
   .container{
@@ -200,4 +213,50 @@ th {
   .cards{
     margin: 10px;
   }
+}*/
+
+/*---------Stlying the menu page-------------*/
+/*---Styling the grids in menu page ---*/
+#menu{
+  grid-area: menu;
+  padding: 10vmin;
+  padding-left: 10vmin;
+  padding-right: 20vmin;
+}
+
+/*Styling the order-sidebar*/
+#order-sidebar{
+  grid-area: order-sidebar;
+  padding: 10vmin;
+}
+
+/*Styling each item 'div' within a food type*/
+.item{
+  border-bottom: solid 1px;
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.3fr;
+  grid-template-rows: 0.5fr 0.5fr;
+  grid-template-areas: 
+  "name price add"
+  "description description description"
+}
+/*Styling the name div*/
+#name{
+  grid-area:name;
+  padding-top: 3vmin;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/*Styling the price div*/
+#price{
+  grid-area: price;
+  padding-top:3vmin;
+}
+/*Styling add button div*/
+#add{
+  grid-area:add;
+  padding-top: 3vmin;
+}
+/*Styling description div*/
+#description{
+  grid-area:description;
 }
