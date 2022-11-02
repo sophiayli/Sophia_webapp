@@ -12,6 +12,7 @@
 <style>
     html {
         scroll-behavior: smooth;
+        scroll-padding-top: var(--scroll-padding,280px);
     }
 .content{
     display:grid;
@@ -45,6 +46,7 @@ nav{
 #order-sidebar{
     grid-area: order-sidebar;
     padding: 10vmin;
+    overflow: scroll;
 }
 
 .item{
@@ -106,9 +108,11 @@ h6{
             </div>
     <div id="menubar">
         <h1>MENU</h1>
-        <a href="http://127.0.0.1:5000/menu#chips">Chips</a>
-        <a href="http://127.0.0.1:5000/menu#fish">Fish</a>
-        <a href="http://127.0.0.1:5000/menu#popular">Popular</a>
+        <ul>
+            <li><a href="http://127.0.0.1:5000/menu#chips">Chips</a></li>
+            <li><a href="http://127.0.0.1:5000/menu#fish">Fish</a></li>
+            <li><a href="http://127.0.0.1:5000/menu#popular">Popular</a></li>
+        </ul>
     </div>
     </nav>
     <div class="content">
@@ -132,6 +136,12 @@ h6{
     <br>
     </div>
     {% endfor %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <h1 id="chips">Chips</h1>
     {% for item in chips%}
@@ -323,6 +333,9 @@ Displaying items in divs and sections
                 item.classList.add("active");
         });
         });  
+    /*find the height of nav bar and add this padding*/
+    const navigationHeight = document.querySelector('nav').offsetHeight
+    document.documentElement.style.setProperty('--scroll-padding', navigationHeight + 120 + "px");
     </script> 
 
 </html>

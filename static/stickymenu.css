@@ -22,7 +22,7 @@ body {
 /* Styling the navbar */
 #navbar {
     overflow: hidden;
-    background-color: rgb(212, 85, 35);
+    background-color: rgba(212, 85, 35, 0.171);
   }
 /*---Styling the links---*/
 .nav-link{
@@ -106,7 +106,7 @@ li a:hover{
 /*---Styling the menu nav bar---*/
 #menubar {
     overflow: hidden;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.089);
     position: fixed;
     width:100%;
   }
